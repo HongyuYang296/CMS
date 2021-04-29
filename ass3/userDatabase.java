@@ -24,14 +24,14 @@ public class userDatabase {
             while (scanner.hasNextLine())//make sure read every line in the file
             {
                 String line = scanner.nextLine();
+                if (line != null && !line.equals("")){
                 String[] values = line.split(",");//split every word by ","
 
                 int idlist = Integer.parseInt(values[0]);
                 String namelist = values[1];
                 User userread = new User(idlist, namelist);
                 userlist.add(userread);
-
-
+                }
             }
         }
         catch(FileNotFoundException exception)
@@ -73,13 +73,9 @@ public class userDatabase {
 //            boolean correctemail = false;
 //            boolean correctPassword = false;
 //            boolean correctType = false;
-
             int newUserid = 0;
             String newUserName = "";
-
             boolean a = false;
-
-
             while (!correctid)
             {
                 System.out.print("Enter user id: ");
@@ -117,13 +113,13 @@ public class userDatabase {
             while (!correctname)
             {
                 Verififer V = new Verififer();
-                System.out.print("Enter borrrower name: ");
+                System.out.print("Enter user name: ");
                 Scanner scanner = new Scanner(System.in);
                 String inputname = scanner.nextLine();
                 String name = inputname.trim(); // remove blank in the begain and end
-                List<Integer> namelist = new ArrayList<>();
+                List<String> namelist = new ArrayList<>();
                 for(int i = 0;i < userlist.size(); i ++){
-                    namelist.add(userlist.get(i).getUserid());
+                    namelist.add(userlist.get(i).getUserName());
                 }
                 if (!V.isalphabetic(name)) // use a method from Verifier Class to check the string "name"
                 {
@@ -144,21 +140,17 @@ public class userDatabase {
                 }
             }
 
-
-
-
 //            System.out.print("Enter user name: ");
 //            Scanner scanner2 = new Scanner(System.in);
 //            String inputName = scanner2.nextLine();
 //            newUserName = inputName.trim();
-
             User user1 = new User(newUserid, newUserName);
             userlist.add(user1);
 
         }
 
         public void show () {
-            System.out.println("this are users");
+            System.out.println("these are users");
             for (int i = 0; i < userlist.size(); i++) {
                 System.out.println(userlist.get(i));
 

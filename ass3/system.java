@@ -54,9 +54,6 @@ public class system {
     }
 
     public void run(){
-        userDatabase users = new userDatabase();
-
-        users.show();
         regist();
 
 
