@@ -37,10 +37,7 @@ public class User{
 
     @Override
     public String toString() {
-        return "User{" +
-                "userid=" + userid +
-                ", userName='" + userName + '\'' +
-                '}';
+        return userid + "," + userName;
     }
 
     public static void main(String[] args) {

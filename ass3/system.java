@@ -3,7 +3,12 @@ import java.util.Scanner;
 public class system {
     private userDatabase users;
 
+    public system(){
+        this.users = new userDatabase();
+    }
+
     private void regist() {
+        users.readfile();
         boolean exit1 = false;
         while (!exit1) {
             printMenu1();
@@ -13,7 +18,13 @@ public class system {
                 registration1();
 
             else if (option.equals("2")) {
+                show1();
+            }
+
+
+            else if (option.equals("3")) {
                 System.out.println("Goodbye!!  thanks! ");
+                users.writeFile();
 
                 exit1 = true;//end the while loop
             } else {
@@ -25,19 +36,30 @@ public class system {
             }
         }
     }
+    private void show1(){
+
+        users.show();
+    }
 
     private void registration1(){
         users.registration();
     }
     private void printMenu1() {
+        System.out.println("");
+        System.out.println("============================");
         System.out.println("1. REGIST");
-        System.out.println("2. EXIT");
+        System.out.println("2. show");
+        System.out.println("3. EXIT");
         System.out.println("please enter your choose: ");
     }
 
     public void run(){
         userDatabase users = new userDatabase();
+
+        users.show();
         regist();
+
+
     }
     public static void main(String[] args) {
         system s = new system();
