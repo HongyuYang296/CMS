@@ -1,63 +1,50 @@
 import java.util.Scanner;
 
-public class system {
-    private userDatabase users;
+/**
+ * Write a description of class here.
+ *
+ * @author team56
+ * @version 1.0 (28 Apr 2021)
+ */
 
-    public system(){
+public class system {
+    private final userDatabase users;
+
+    public system() {
         this.users = new userDatabase();
     }
 
-    private void regist() {
+    private void run() {
         users.readfile();
         boolean exit1 = false;
         while (!exit1) {
-            printMenu1();
+            Dispaly.printMenu();
             Scanner scanner = new Scanner(System.in);
             String option = scanner.nextLine();
-            if (option.equals("1"))
-                registration1();
-
-            else if (option.equals("2")) {
-                show1();
-            }
-
-
-            else if (option.equals("3")) {
-                System.out.println("Goodbye!!  thanks! ");
-                users.writeFile();
-
-                exit1 = true;//end the while loop
-            } else {
-                System.out.println("##ERROR: Invalid input##");
-                System.out.println("please enter again");
-                System.out.println("");
-                System.out.println("================================");
-                System.out.println("");
+            switch (option) {
+                case "1" -> registration1();
+                case "2" -> showUserList();
+                case "3" -> {
+                    System.out.println("Goodbye!!  thanks! ");
+                    users.writeFile();
+                    exit1 = true;//end the while loop
+                }
+                default -> {
+                    Dispaly.invalidInput();
+                }
             }
         }
     }
-    private void show1(){
 
-        users.show();
-    }
-
-    private void registration1(){
+    private void registration1() {
         users.registration();
     }
-    private void printMenu1() {
-        System.out.println("");
-        System.out.println("============================");
-        System.out.println("1. REGIST");
-        System.out.println("2. show");
-        System.out.println("3. EXIT");
-        System.out.println("please enter your choose: ");
+
+    private void showUserList() {
+        Dispaly.show(users.getUserlist());
     }
 
-    public void run(){
-        regist();
 
-
-    }
     public static void main(String[] args) {
         system s = new system();
         s.run();
