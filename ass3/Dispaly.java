@@ -13,9 +13,16 @@ public class Dispaly {
         System.out.println();
         System.out.println("============================");
         System.out.println("1. REGIST");
-        System.out.println("2. show");
+        System.out.println("2. LOG IN");
         System.out.println("3. EXIT");
         System.out.println("please enter your choose: ");
+    }
+
+    public static void showLogInPage(){
+        System.out.println();
+        System.out.println("please enter");
+
+
     }
 
     public static void showPasswordTips() {
@@ -50,6 +57,39 @@ public class Dispaly {
         System.out.println("                      (2) Chair");
         System.out.println("                      (3) Reviewer");
         System.out.println("                      (4) Admin");
+        System.out.println("type selected successfully");
 
     }
+
+    public static void showAdminPage(){
+        System.out.println();
+        System.out.println("======================");
+        System.out.println("this is the admin page");
+        System.out.println("    (1) display all users");
+        System.out.println("    (2) display all papers");
+        System.out.println("    (3) return to main page");
+        System.out.println("select your options: ");
+    }
+
+    public static void showChairPage(){
+        System.out.println();
+        System.out.println("======================");
+        System.out.println("this is the Chair page");
+        System.out.println("    (1) ");
+        System.out.println("    (2) ");
+        System.out.println("select your options: ");
+    }
+
+    public static void showAuthorPage(){
+        System.out.println();
+        System.out.println("======================");
+        System.out.println("this is the Author page");
+        System.out.println("    (1) submit paper");
+        System.out.println("    (2) return to main page");
+        System.out.println("select your options: ");
+    }
+
+
 }
+
+

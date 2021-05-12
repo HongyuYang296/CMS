@@ -68,7 +68,6 @@ public class User{
     public static String setUserName(ArrayList arrayList) {
         boolean correctname = false;
         String newUserName = "";
-
         while (!correctname)
         {
             System.out.print("Enter user name: ");
@@ -84,6 +83,11 @@ public class User{
             else if (arrayList.contains(name))// check if name have already exist
             {
                 System.out.println("     sorry, " + name + " already registered!");
+                System.out.println();
+            }
+            else if (Verififer.isNumeric(name))
+            {
+                System.out.println("     name must not be blank, must be alphabetic, must not contain commas");
                 System.out.println();
             }
             else
@@ -175,6 +179,7 @@ public class User{
     }
 
     public static String setUserType() {
+        Dispaly.showUserType();
         String newUserType = "";
         boolean exit = false;
         while (!exit) {
