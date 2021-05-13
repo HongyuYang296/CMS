@@ -1,14 +1,6 @@
 public class Admin {
-    private int Adminid;
-    private  String AdminName;
-    private  String AdminEmail;
+    private int AdminId;
     private  String AdminPassword;
     private  String AdminType;
-
-
-
-
-
-
 
 }
