@@ -48,14 +48,10 @@ public class CMS {
                 }
             }
         }
-
-
     }
-
     private void registration1() {
         users.registration();
     }
-
 
     private void logIN(){
         Scanner input = new Scanner(java.lang.System.in);
@@ -65,13 +61,17 @@ public class CMS {
         String password = input.nextLine();
         User user = users.logIn(email,password);
         if (user != null && "Admin".equals((user.getUserType()))){
-            java.lang.System.out.println(user);
             adminPage();
         }
         else if (user != null && "Author".equals((user.getUserType()))){
-            authorPage();
-
+            authorPage(user);
     }
+        else if (user != null && "Chair".equals((user.getUserType()))){
+            chairPage();
+        }
+        else if (user != null && "Reviewer".equals((user.getUserType()))){
+            reviewerPage();
+        }
 
     }
 
@@ -92,14 +92,14 @@ public class CMS {
         }
     }
 
-    private void authorPage() {
+    private void authorPage(User user) {
         boolean exit = false;
         while (!exit) {
             Dispaly.showAuthorPage();
             Scanner input2 = new Scanner(java.lang.System.in);
             String option = input2.nextLine();
             switch (option) {
-                case "1" -> submitPaper();
+                case "1" -> submitPaper(user);
                 case "2" -> {
                     mainPage();
                     exit = true;
@@ -108,18 +108,70 @@ public class CMS {
         }
     }
 
-    private void submitPaper(){
-        java.lang.System.out.println("select one submit");
+    private void reviewerPage() {
+        Dispaly.showReviewerPage();
+        boolean exit = false;
+        while (!exit) {
+            Dispaly.showAuthorPage();
+            Scanner input2 = new Scanner(java.lang.System.in);
+            String option = input2.nextLine();
+            switch (option) {
+                case "1" -> notfineshed();
+                case "2" -> notfineshed();
+                case "3" -> {
+                    mainPage();
+                    exit = true;
+
+                }
+            }
+        }
+    }
+
+    private void chairPage(){
+        Dispaly.showChairPage();
+        boolean exit = false;
+        while (!exit) {
+            Dispaly.showAuthorPage();
+            Scanner input2 = new Scanner(java.lang.System.in);
+            String option = input2.nextLine();
+            switch (option) {
+                case "1" -> creatConference();
+                case "2" -> assignPaper();
+                case "3" -> {
+                    mainPage();
+                    exit = true;
+
+                }
+            }
+        }
+    }
+
+    private void creatConference(){
 
     }
 
+    private void assignPaper(){
+
+    }
+
+    private void submitPaper(User user){
+        paperList.submitPaper(user);
+
+
+    }
 
     private void showUserList() {
-        Dispaly.show(users.getUserlist());
+        String listName = "users";
+        Dispaly.show(users.getUserlist(), listName);
     }
 
     private void showPaperList(){
-        Dispaly.show(paperList.getPaperList());
+        String listName = "papers";
+        Dispaly.show(paperList.getPaperList(), listName);
+    }
+
+    private void notfineshed(){
+        System.out.println("not finished");
     }
 
     public static void main(String[] args) {
@@ -128,5 +180,8 @@ public class CMS {
         s.readPaperDatabase();
         s.run();
     }
+
+
+
 
 }

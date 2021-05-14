@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+import java.io.File;
+
 public class PaperDatabase {
     private ArrayList<Paper> paperArrayList;
 
@@ -46,7 +48,37 @@ public class PaperDatabase {
 
     }
 
+    private ArrayList getIdList(){
+        ArrayList<Integer> idlist = new ArrayList<>();
+        for (int i = 0; i < paperArrayList.size(); i++) {
+            idlist.add(paperArrayList.get(i).getPaperId());
+        }
+        return idlist;
+    }
+
+    public static void selectPaper(){
+        String path = "papers";
+        File file = new File(path);
+        File[] fs = file.listFiles();
+        for (int  i=0; i< fs.length; i++){
+            System.out.println(fs[i].getName());
+        }
+    }
+
+
+    public void submitPaper(User user){
+        int conId = 0;
+        Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserid()), Paper.setConferenceId(conId),
+                Paper.setTopic(), Paper.setName(), Paper.setFormat(), Paper.setState(), Paper.setSubmitTime());
+        paperArrayList.add(submitPaper);
+
+
+    }
     private void writFile(){
 
+    }
+
+    public static void main(String[] args) {
+        selectPaper();
     }
 }
