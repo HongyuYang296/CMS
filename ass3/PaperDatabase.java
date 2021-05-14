@@ -1,11 +1,7 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
-
-import java.io.File;
 
 public class PaperDatabase {
     private ArrayList<Paper> paperArrayList;
@@ -74,8 +70,21 @@ public class PaperDatabase {
 
 
     }
-    private void writFile(){
+    public void writeFile() {
+        String filename = ("paperdatabase.txt");
+        try {
+            PrintWriter outputFile = new PrintWriter(filename);
+            for (int i = 0; i < paperArrayList.size(); i++) {
+                outputFile.println(paperArrayList.get(i).getPaperId() + "," + paperArrayList.get(i).getAuthorId()
+                        + "," + paperArrayList.get(i).getConferenceId() + "," + paperArrayList.get(i).getTopic()
+                        + "," + paperArrayList.get(i).getName() + "," + paperArrayList.get(i).getFormat()
+                        + "," + paperArrayList.get(i).getState() + "," + paperArrayList.get(i).getSubmitTime());
 
+            }
+            outputFile.close();
+        } catch (IOException e) {
+            System.out.println("Unexpected I/O error occurred");// print this when something wrong
+        }
     }
 
     public static void main(String[] args) {

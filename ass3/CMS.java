@@ -10,11 +10,13 @@ import java.util.Scanner;
 public class CMS {
     private final UserDatabase users;
     private final PaperDatabase paperList;
+    private final ConferenceDatabase conferenceList;
     private boolean exitCMS;
 
     public CMS() {
         this.users = new UserDatabase();
         this.paperList = new PaperDatabase();
+        this.conferenceList = new ConferenceDatabase();
         this.exitCMS = false;
     }
 
@@ -25,6 +27,10 @@ public class CMS {
 
     private void readPaperDatabase(){
         paperList.readFile();
+    }
+
+    private void readConferenceDatabase(){
+        conferenceList.readFile();
     }
     private  void run() {
         mainPage();
@@ -41,6 +47,8 @@ public class CMS {
                 case "3" -> {
                     java.lang.System.out.println("Goodbye!!  thanks! ");
                     users.writeFile();
+                    paperList.writeFile();
+                    conferenceList.writeFile();
                     exitCMS = true;//end the while loop
                 }
                 default -> {
@@ -52,6 +60,8 @@ public class CMS {
     private void registration1() {
         users.registration();
     }
+
+
 
     private void logIN(){
         Scanner input = new Scanner(java.lang.System.in);
@@ -109,10 +119,9 @@ public class CMS {
     }
 
     private void reviewerPage() {
-        Dispaly.showReviewerPage();
         boolean exit = false;
         while (!exit) {
-            Dispaly.showAuthorPage();
+            Dispaly.showReviewerPage();
             Scanner input2 = new Scanner(java.lang.System.in);
             String option = input2.nextLine();
             switch (option) {
@@ -128,26 +137,24 @@ public class CMS {
     }
 
     private void chairPage(){
-        Dispaly.showChairPage();
         boolean exit = false;
         while (!exit) {
-            Dispaly.showAuthorPage();
+            Dispaly.showChairPage();
             Scanner input2 = new Scanner(java.lang.System.in);
             String option = input2.nextLine();
             switch (option) {
-                case "1" -> creatConference();
+                case "1" -> createConference();
                 case "2" -> assignPaper();
                 case "3" -> {
                     mainPage();
                     exit = true;
-
                 }
             }
         }
     }
 
-    private void creatConference(){
-
+    private void createConference(){
+        conferenceList.creatConference();
     }
 
     private void assignPaper(){
@@ -178,10 +185,7 @@ public class CMS {
         CMS s = new CMS();
         s.readUserdatabase();
         s.readPaperDatabase();
+        s.readConferenceDatabase();
         s.run();
     }
-
-
-
-
 }
