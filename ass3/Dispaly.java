@@ -117,16 +117,8 @@ public class Dispaly {
         System.out.println("select your options: ");
     }
 
-    public static void showFormat(){
-        System.out.println();
-        System.out.println("===========================");
-        System.out.println("please select paper format");
-        System.out.println(    "(1) PDF");
-        System.out.println(    "(2) Word");
-        System.out.println(    "(3) Others");
-        System.out.println("============================");
-        System.out.println("select your options: ");
-    }
+
+
 
 }
 
