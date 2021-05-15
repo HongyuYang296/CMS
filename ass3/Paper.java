@@ -69,9 +69,14 @@ public class Paper
         return userId;
     }
 
+
+
     public static Integer setConferenceId(Integer conferenceId) {
         return conferenceId;
     }
+
+
+
 
     public static String setTopic() {
         Dispaly.showTopics();
@@ -121,31 +126,30 @@ public class Paper
                     newTopics = "Others";
                     exit = true;
                 }
-                default -> {
-                    Dispaly.invalidInput();
-                }
+                default -> Dispaly.invalidInput();
+
             }
         }
         return newTopics;
     }
 
     public static String setName() {
-        String name = "";
+        String name = "11";
         return name;
     }
 
     public static String setFormat() {
-        String format = "";
+        String format = "11";
         return format;
     }
 
     public static String setState() {
-        String state = "";
+        String state = "11";
         return state;
     }
 
     public static LocalDate setSubmitTime() {
-        LocalDate submitTime = TimeConvert.toDate("0000-00-00");
+        LocalDate submitTime = LocalDate.now();
         return submitTime;
     }
 

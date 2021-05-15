@@ -31,12 +31,6 @@ public class Verififer {
         String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;.',?/*~$^+=<>]).{6,20}$";
         return password.matches(regex);
     }
-
-
-
-
-
-
 }
 
 

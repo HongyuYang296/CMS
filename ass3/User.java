@@ -132,7 +132,7 @@ public class User{
                 }
                 else {
                     newUserPassword = inputpassword;
-                    System.out.println("      email successfully set");
+                    System.out.println("      password successfully set");
                     System.out.println();
                     correctPassword = true;
                 }
@@ -179,6 +179,7 @@ public class User{
                 }
             }
         }
+        System.out.println("type successfully selected");
         return newUserType;
     }
 

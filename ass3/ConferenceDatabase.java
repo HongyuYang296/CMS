@@ -61,6 +61,38 @@ public class ConferenceDatabase {
         }
     }
 
+
+    public Integer selectConference(){
+        readFile();
+        boolean exit = false;
+        String inputValue = "";
+        while (!exit) {
+            System.out.println();
+            System.out.println("conferences list: ");
+            for (int i = 0; i < conferenceArrayList.size(); i++) {
+                System.out.println("     " + (i+1) + ". " + conferenceArrayList.get(i));
+            }
+            System.out.println("please select one conference: ");
+            Scanner input = new Scanner(java.lang.System.in);
+            inputValue = input.nextLine();
+            if (Verififer.isNumeric(inputValue) == true)// call function from Verifier calss
+            {
+                Integer selectConference = Integer.parseInt(inputValue);
+                if (selectConference > conferenceArrayList.size() || selectConference < 1)
+                    System.out.println("don't have this conference");
+
+                else {
+                    System.out.println("you have choose " + getConferenceArrayList().get(selectConference - 1));// selection-1 means get index
+                    exit = true;//end the loop
+                }
+            } else {
+                System.out.println("not digit input, please input again");
+            }
+        }
+        return Integer.parseInt(inputValue);
+
+
+    }
     public void writeFile() {
         String filename = ("conferenceDatabase.txt");
         try {

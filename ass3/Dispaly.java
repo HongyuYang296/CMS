@@ -1,14 +1,11 @@
 import java.util.ArrayList;
-
 /**
  * Write a description of class here.
  *
  * @author team56
  * @version 1.0 (28 Apr 2021)
  */
-
 public class Dispaly {
-
     public static void printMenu() {
         System.out.println();
         System.out.println("============================");
@@ -18,7 +15,6 @@ public class Dispaly {
         System.out.println("============================");
         System.out.println("please enter your choose: ");
     }
-
 
     public static void showPasswordTips() {
         System.out.println("Password must contain:");
@@ -52,8 +48,7 @@ public class Dispaly {
         System.out.println("                      (2) Chair");
         System.out.println("                      (3) Reviewer");
         System.out.println("                      (4) Admin");
-        System.out.println("type selected successfully");
-
+        System.out.println("select your options: ");
     }
 
     public static void showAdminPage(){
@@ -103,23 +98,19 @@ public class Dispaly {
         System.out.println();
         System.out.println("==================================");
         System.out.println("please select the related topic");
-        System.out.println("     (1) ");
-        System.out.println("     (2) ");
-        System.out.println("     (3) ");
-        System.out.println("     (4) ");
-        System.out.println("     (5) ");
-        System.out.println("     (6) ");
-        System.out.println("     (7) ");
-        System.out.println("     (8) ");
-        System.out.println("     (9) ");
+        System.out.println("     (1) IT");
+        System.out.println("     (2) Medicine");
+        System.out.println("     (3) Education");
+        System.out.println("     (4) Art");
+        System.out.println("     (5) History");
+        System.out.println("     (6) Geography");
+        System.out.println("     (7) Biology");
+        System.out.println("     (8) Math");
+        System.out.println("     (9) Economy");
         System.out.println("     (10) others");
         System.out.println("===================================");
         System.out.println("select your options: ");
     }
-
-
-
-
 }
 
 

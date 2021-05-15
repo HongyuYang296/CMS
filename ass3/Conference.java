@@ -1,4 +1,3 @@
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -79,48 +78,47 @@ public class Conference {
             String option = scanner.nextLine();
             switch (option) {
                 case "1" -> {
-                    newTopics = "topic1";
+                    newTopics = "IT";
                     exit = true;
                 }
                 case "2" -> {
-                    newTopics = "topic2";
+                    newTopics = "Medicine";
                     exit = true;
                 }
                 case "3" -> {
-                    newTopics = "topic3";
+                    newTopics = "Education";
                     exit = true;
                 }
                 case "4" -> {
-                    newTopics = "topic4";
+                    newTopics = "Art";
                     exit = true;
                 }
                 case "5" -> {
-                    newTopics = "topic5";
+                    newTopics = "History";
                     exit = true;
                 }
                 case "6" -> {
-                    newTopics = "topic6";
+                    newTopics = "Geography";
                     exit = true;
                 }
                 case "7" -> {
-                    newTopics = "topic7";
+                    newTopics = "Biology";
                     exit = true;
                 }
                 case "8" -> {
-                    newTopics = "topic8";
+                    newTopics = "Math";
                     exit = true;
                 }
                 case "9" -> {
-                    newTopics = "topic9";
+                    newTopics = "Economy";
                     exit = true;
                 }
                 case "10" -> {
                     newTopics = "Others";
                     exit = true;
                 }
-                default -> {
-                    Dispaly.invalidInput();
-                }
+                default -> Dispaly.invalidInput();
+
             }
         }
         return newTopics;
@@ -150,6 +148,16 @@ public class Conference {
         return newDeadline;
     }
 
+    @Override
+    public String toString() {
+        return "Conference{" +
+                "conferenceId=" + conferenceId +
+                ", conferenceName='" + conferenceName + '\'' +
+                ", conferenceTitle='" + conferenceTitle + '\'' +
+                ", conferenceTopics='" + conferenceTopics + '\'' +
+                ", submitDeadline=" + submitDeadline +
+                '}';
+    }
 }
 
 

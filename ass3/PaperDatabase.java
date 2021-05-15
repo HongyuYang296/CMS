@@ -62,8 +62,10 @@ public class PaperDatabase {
     }
 
 
+
     public void submitPaper(User user){
-        int conId = 0;
+        ConferenceDatabase conferenceList = new ConferenceDatabase();
+        int conId = conferenceList.selectConference();
         Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserid()), Paper.setConferenceId(conId),
                 Paper.setTopic(), Paper.setName(), Paper.setFormat(), Paper.setState(), Paper.setSubmitTime());
         paperArrayList.add(submitPaper);
