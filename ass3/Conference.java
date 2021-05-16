@@ -9,13 +9,15 @@ public class Conference {
     private String conferenceName;
     private String conferenceTitle;
     private String conferenceTopics;
+    private String acceptFormat;
     private LocalDate submitDeadline;
 
-    public Conference(Integer conferenceId, String conferenceName, String conferenceTitle, String conferenceTopics, LocalDate submitDateline) {
+    public Conference(Integer conferenceId, String conferenceName, String conferenceTitle, String conferenceTopics, String acceptFormat, LocalDate submitDateline) {
         this.conferenceId = conferenceId;
         this.conferenceName = conferenceName;
         this.conferenceTitle = conferenceTitle;
         this.conferenceTopics = conferenceTopics;
+        this.acceptFormat = acceptFormat;
         this.submitDeadline = submitDateline;
     }
 
@@ -124,6 +126,31 @@ public class Conference {
         return newTopics;
     }
 
+    public String getAcceptFormat() {
+        return acceptFormat;
+    }
+
+    public static String setAcceptFormat() {
+        Dispaly.showFileFormat();
+        String newFormat = "";
+        boolean exit = false;
+        while (!exit) {
+            Scanner scanner = new Scanner(System.in);
+            String option = scanner.nextLine();
+            switch (option) {
+                case "1" -> {
+                    newFormat = "docx";
+                    exit = true;
+                }
+                case "2" -> {
+                    newFormat = "PDF";
+                    exit = true;
+                }
+                default -> Dispaly.invalidInput();
+            }
+        }
+        return newFormat;
+    }
 
     public LocalDate getSubmitDateline() {
         return submitDeadline;
@@ -150,13 +177,13 @@ public class Conference {
 
     @Override
     public String toString() {
-        return "Conference{" +
+        return
                 "conferenceId=" + conferenceId +
                 ", conferenceName='" + conferenceName + '\'' +
                 ", conferenceTitle='" + conferenceTitle + '\'' +
                 ", conferenceTopics='" + conferenceTopics + '\'' +
-                ", submitDeadline=" + submitDeadline +
-                '}';
+                ", acceptFormat='" + acceptFormat + '\'' +
+                ", submitDeadline=" + submitDeadline;
     }
 }
 

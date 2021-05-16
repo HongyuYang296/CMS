@@ -1,2 +1,5 @@
 1,1,1,topic,name,format,state,2021-02-01
 2,2,2,topic1,11,11,11,2021-05-16
+3,2,2,topic3,exampleFile2,docx,11,2021-05-16
+4,2,1,IT,exampleFile1,PDF,11,2021-05-16
+5,2,2,Medicine,exampleFile1,PDF,11,2021-05-16

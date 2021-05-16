@@ -87,39 +87,39 @@ public class Paper
             String option = scanner.nextLine();
             switch (option) {
                 case "1" -> {
-                    newTopics = "topic1";
+                    newTopics = "IT";
                     exit = true;
                 }
                 case "2" -> {
-                    newTopics = "topic2";
+                    newTopics = "Medicine";
                     exit = true;
                 }
                 case "3" -> {
-                    newTopics = "topic3";
+                    newTopics = "Education";
                     exit = true;
                 }
                 case "4" -> {
-                    newTopics = "topic4";
+                    newTopics = "Art";
                     exit = true;
                 }
                 case "5" -> {
-                    newTopics = "topic5";
+                    newTopics = "History";
                     exit = true;
                 }
                 case "6" -> {
-                    newTopics = "topic6";
+                    newTopics = "Geography";
                     exit = true;
                 }
                 case "7" -> {
-                    newTopics = "topic7";
+                    newTopics = "Biology";
                     exit = true;
                 }
                 case "8" -> {
-                    newTopics = "topic8";
+                    newTopics = "Math";
                     exit = true;
                 }
                 case "9" -> {
-                    newTopics = "topic9";
+                    newTopics = "Economy";
                     exit = true;
                 }
                 case "10" -> {
@@ -130,16 +130,16 @@ public class Paper
 
             }
         }
+        System.out.println("you have choose: " + newTopics);
+        System.out.println();
         return newTopics;
     }
 
-    public static String setName() {
-        String name = "11";
+    public static String setName(String name) {
         return name;
     }
 
-    public static String setFormat() {
-        String format = "11";
+    public static String setFormat(String format) {
         return format;
     }
 

@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,6 +34,7 @@ public class ConferenceDatabase {
         return idList;
     }
 
+
     public void readFile(){
         Scanner scanner = null;
         String filename = ("conferenceDatabase.txt");
@@ -45,7 +47,7 @@ public class ConferenceDatabase {
                 if (line != null && !line.equals("")) {
                     String[] values = line.split(",");//split every word by ","
                     Conference readConference = new Conference(Integer.parseInt(values[0]), (values[1]),
-                            (values[2]),(values[3]), TimeConvert.toDate(values[4]));
+                            (values[2]),(values[3]),(values[4]),TimeConvert.toDate(values[5]));
                     conferenceArrayList.add(readConference);
                 }
             }
@@ -68,10 +70,12 @@ public class ConferenceDatabase {
         String inputValue = "";
         while (!exit) {
             System.out.println();
+            System.out.println("=====================================================================================");
             System.out.println("conferences list: ");
             for (int i = 0; i < conferenceArrayList.size(); i++) {
                 System.out.println("     " + (i+1) + ". " + conferenceArrayList.get(i));
             }
+            System.out.println("=====================================================================================");
             System.out.println("please select one conference: ");
             Scanner input = new Scanner(java.lang.System.in);
             inputValue = input.nextLine();
@@ -102,6 +106,7 @@ public class ConferenceDatabase {
                         + "," + conferenceArrayList.get(i).getConferenceName()
                         + "," + conferenceArrayList.get(i).getConferenceTitle()
                         + "," + conferenceArrayList.get(i).getConferenceTopics()
+                        + "," + conferenceArrayList.get(i).getAcceptFormat()
                         + "," + conferenceArrayList.get(i).getSubmitDateline());
             }
             outputFile.close();
@@ -113,8 +118,10 @@ public class ConferenceDatabase {
     public void creatConference(){
         Conference newConference = new Conference(Conference.setConferenceId(getIdList()),
                 Conference.setConferenceName(getNameList()), Conference.setConferenceTitle(),
-                Conference.setConferenceTopics(), Conference.setSubmitDeadline());
+                Conference.setConferenceTopics(), Conference.setAcceptFormat(),Conference.setSubmitDeadline());
         conferenceArrayList.add(newConference);
+        System.out.println();
+        System.out.println("conference create successfully");
     }
 
 

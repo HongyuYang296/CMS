@@ -111,6 +111,24 @@ public class Dispaly {
         System.out.println("===================================");
         System.out.println("select your options: ");
     }
+
+    public static void showFileFormat(){
+        System.out.println();
+        System.out.println("================================");
+        System.out.println("please choose one accept format");
+        System.out.println("      (1) docx");
+        System.out.println("      (2) PDF");
+        System.out.println("================================");
+        System.out.println("please select your options: ");
+    }
+
+    public static void uploadFailed(String reason){
+        System.out.println();
+        System.out.println("===========================");
+        System.out.println("paper upload failed");
+        System.out.println("     ----" + reason);
+        System.out.println("============================");
+    }
 }
 
 

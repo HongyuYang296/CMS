@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -52,23 +53,74 @@ public class PaperDatabase {
         return idlist;
     }
 
-    public static void selectPaper(){
+    public static String selectPaper(){
         String path = "papers";
         File file = new File(path);
         File[] fs = file.listFiles();
-        for (int  i=0; i< fs.length; i++){
-            System.out.println(fs[i].getName());
+        boolean exit = false;
+        String inputValue = "";
+        while (!exit) {
+            System.out.println();
+            System.out.println("========================");
+            for (int i = 0; i < fs.length; i++) {
+                System.out.println((i+1) + ". " + fs[i].getName());
+            }
+            System.out.println("========================");
+            System.out.println("Please select submit paper: ");
+            Scanner input = new Scanner(java.lang.System.in);
+            inputValue = input.nextLine();
+            if (Verififer.isNumeric(inputValue) == true)// call function from Verifier calss
+            {
+                Integer selectConference = Integer.parseInt(inputValue);
+                if (selectConference > fs.length || selectConference < 1)
+                    System.out.println("don't have this conference");
+
+                else {
+                    System.out.println("you have choose " + fs[selectConference-1 ].getName());// selection-1 means get index
+                    exit = true;//end the loop
+                }
+            } else {
+                System.out.println("not digit input, please input again");
+            }
         }
+        return fs[Integer.parseInt(inputValue) -1].getName();
+    }
+
+    public static String getFileType(String file){
+        String[] strArray = file.split("\\.");
+        int suffixIndex = strArray.length -1;
+        return strArray[suffixIndex];
+    }
+    public static String getFileName(String file){
+        String fileName = file.substring(0,file.lastIndexOf("."));
+        return fileName;
     }
 
 
-
     public void submitPaper(User user){
+        String file = selectPaper();
         ConferenceDatabase conferenceList = new ConferenceDatabase();
         int conId = conferenceList.selectConference();
-        Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserid()), Paper.setConferenceId(conId),
-                Paper.setTopic(), Paper.setName(), Paper.setFormat(), Paper.setState(), Paper.setSubmitTime());
-        paperArrayList.add(submitPaper);
+        LocalDate deadLine = conferenceList.getConferenceArrayList().get(conId-1).getSubmitDateline();
+
+        if (!Paper.setSubmitTime().isBefore(deadLine)
+                && !getFileType(file).equals(conferenceList.getConferenceArrayList().get(conId-1).getAcceptFormat())){
+            Dispaly.uploadFailed("Later than deadline & Wrong format");
+        }
+        else if (!Paper.setSubmitTime().isBefore(deadLine)) {
+            Dispaly.uploadFailed("Later than deadline");
+        }
+        else if (!getFileType(file).equals(conferenceList.getConferenceArrayList().get(conId-1).getAcceptFormat())){
+            Dispaly.uploadFailed("Wrong format");
+        }
+
+        else {
+            Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserid()), Paper.setConferenceId(conId),
+                    Paper.setTopic(), Paper.setName(getFileName(file)), Paper.setFormat(getFileType(file)), Paper.setState(), Paper.setSubmitTime());
+            paperArrayList.add(submitPaper);
+            System.out.println();
+            System.out.println("paper upload successfully!");
+        }
 
 
     }
@@ -89,7 +141,4 @@ public class PaperDatabase {
         }
     }
 
-    public static void main(String[] args) {
-        selectPaper();
-    }
 }
