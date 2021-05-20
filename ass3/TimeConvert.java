@@ -1,7 +1,7 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;//use the package
+import java.time.format.DateTimeFormatter; //use the package
 
-public class TimeConvert {
+public class TimeConvert { //creating the TimeConvert class
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static String toString(LocalDate date){
@@ -13,7 +13,7 @@ public class TimeConvert {
     }
 
     public static Boolean isDateVail(String date) {
-        boolean flag = true;
+        boolean flag = true; // Expectation tests and compare the value
         try {
             LocalDate.parse(date, formatter);
         } catch (Exception e) {
