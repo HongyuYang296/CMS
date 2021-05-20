@@ -1,28 +1,19 @@
 import java.util.ArrayList;
-
 /**
  * Write a description of class here.
  *
  * @author team56
  * @version 1.0 (28 Apr 2021)
  */
-
 public class Dispaly {
-
     public static void printMenu() {
         System.out.println();
         System.out.println("============================");
         System.out.println("1. REGIST");
         System.out.println("2. LOG IN");
         System.out.println("3. EXIT");
+        System.out.println("============================");
         System.out.println("please enter your choose: ");
-    }
-
-    public static void showLogInPage(){
-        System.out.println();
-        System.out.println("please enter");
-
-
     }
 
     public static void showPasswordTips() {
@@ -36,8 +27,8 @@ public class Dispaly {
         System.out.print("Enter user password: ");
     }
 
-    public static void show(ArrayList arrayList) {
-        System.out.println("User list: ");
+    public static void show(ArrayList arrayList, String listName) {
+        System.out.println(listName + " list: ");
         for (int i = 0; i < arrayList.size(); i++) {
             System.out.println((i + 1) + ". " + arrayList.get(i));
         }
@@ -57,38 +48,104 @@ public class Dispaly {
         System.out.println("                      (2) Chair");
         System.out.println("                      (3) Reviewer");
         System.out.println("                      (4) Admin");
-        System.out.println("type selected successfully");
-
+        System.out.println("select your options: ");
     }
 
     public static void showAdminPage(){
         System.out.println();
-        System.out.println("======================");
+        System.out.println("================================");
         System.out.println("this is the admin page");
         System.out.println("    (1) display all users");
         System.out.println("    (2) display all papers");
-        System.out.println("    (3) return to main page");
+        System.out.println("    (3) Log off");
+        System.out.println("================================");
         System.out.println("select your options: ");
     }
 
     public static void showChairPage(){
         System.out.println();
-        System.out.println("======================");
+        System.out.println("=============================");
         System.out.println("this is the Chair page");
-        System.out.println("    (1) ");
-        System.out.println("    (2) ");
+        System.out.println("    (1) Creat Conference");
+        System.out.println("    (2) Assign papers");
+        System.out.println("    (3) Log off");
+        System.out.println("=============================");
         System.out.println("select your options: ");
     }
 
     public static void showAuthorPage(){
         System.out.println();
-        System.out.println("======================");
+        System.out.println("===============================");
         System.out.println("this is the Author page");
         System.out.println("    (1) submit paper");
-        System.out.println("    (2) return to main page");
+        System.out.println("    (2) Log off");
+        System.out.println("===============================");
         System.out.println("select your options: ");
     }
 
+    public static void showReviewerPage(){
+        System.out.println();
+        System.out.println("===============================");
+        System.out.println("this is the Reviewer page");
+        System.out.println("    (1) select relevant topics");
+        System.out.println("    (2) select paper to review");
+        System.out.println("    (3) submit evaluation");
+        System.out.println("    (4) Log off");
+        System.out.println("===============================");
+        System.out.println("select your options: ");
+    }
+
+    public static void showTopics(){
+        System.out.println();
+        System.out.println("==================================");
+        System.out.println("please select the related topic");
+        System.out.println("     (1) IT");
+        System.out.println("     (2) Medicine");
+        System.out.println("     (3) Education");
+        System.out.println("     (4) Art");
+        System.out.println("     (5) History");
+        System.out.println("     (6) Geography");
+        System.out.println("     (7) Biology");
+        System.out.println("     (8) Math");
+        System.out.println("     (9) Economy");
+        System.out.println("     (10) others");
+        System.out.println("===================================");
+        System.out.println("select your options: ");
+    }
+
+    public static void showFileFormat(){
+        System.out.println();
+        System.out.println("================================");
+        System.out.println("please choose one accept format");
+        System.out.println("      (1) docx");
+        System.out.println("      (2) PDF");
+        System.out.println("================================");
+        System.out.println("please select your options: ");
+    }
+
+    public static void uploadFailed(String reason){
+        System.out.println();
+        System.out.println("===========================");
+        System.out.println("paper upload failed");
+        System.out.println("     ----" + reason);
+        System.out.println("============================");
+    }
+
+    public static void showEvaluation(){
+        System.out.println();
+        System.out.println("===========================================================================");
+        System.out.println("please select give the evaluation: ");
+        System.out.println("'HD': high distinction, 'D': distinction, 'C': credit, 'P': pass, 'N': fail");
+        System.out.println("      (1) HD");
+        System.out.println("      (2) D");
+        System.out.println("      (3) C");
+        System.out.println("      (4) P");
+        System.out.println("      (5) N");
+        System.out.println("===========================================================================");
+        System.out.println("select your options: ");
+
+
+    }
 }
 
 

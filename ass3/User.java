@@ -29,35 +29,7 @@ public class User{
     }
 
     public static int setUserid(ArrayList arrayList) {
-        boolean correctid = false;
-        int newUserid = 0;
-
-        while (!correctid)
-        {
-            System.out.print("Enter user id: ");
-            Scanner scanner = new Scanner(System.in);
-            String inputid = scanner.nextLine();
-            try
-            {
-
-                int id = Integer.parseInt(inputid.trim());
-
-                if (arrayList.contains(id)) {
-                    System.out.println("     Sorry, " + id + " is already used");
-                    System.out.println();
-                }
-                else
-                    newUserid = id;
-                System.out.println("     Id successfully set");
-                System.out.println();
-                correctid = true;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("     id must be integer");
-                System.out.println();
-            }
-        }
+        Integer newUserid = arrayList.size() + 1;
         return newUserid;
     }
 
@@ -160,7 +132,7 @@ public class User{
                 }
                 else {
                     newUserPassword = inputpassword;
-                    System.out.println("      email successfully set");
+                    System.out.println("      password successfully set");
                     System.out.println();
                     correctPassword = true;
                 }
@@ -207,6 +179,7 @@ public class User{
                 }
             }
         }
+        System.out.println("type successfully selected");
         return newUserType;
     }
 

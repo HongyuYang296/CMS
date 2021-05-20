@@ -1,8 +1,10 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Paper
 {
-    private Integer id;
+    private Integer paperId;
     private Integer authorId;
     private Integer conferenceId;
     private String topic;
@@ -11,10 +13,11 @@ public class Paper
     private String state;
     private LocalDate submitTime;
 
+
     public Paper(Integer id, Integer authorId, Integer conferenceId,
                  String topic, String name, String format,
                  String state, LocalDate submitTime) {
-        this.id = id;
+        this.paperId = id;
         this.authorId = authorId;
         this.conferenceId = conferenceId;
         this.topic = topic;
@@ -24,8 +27,15 @@ public class Paper
         this.submitTime = submitTime;
     }
 
-    public Integer getId() {
-        return id;
+    public Paper(Integer id, String name){
+        this.paperId = id;
+        this.name = name;
+
+    }
+
+
+    public Integer getPaperId() {
+        return paperId;
     }
 
     public Integer getAuthorId() {
@@ -56,42 +66,109 @@ public class Paper
         return submitTime;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public static Integer setPaperId(ArrayList arrayList) {
+        Integer paperId = arrayList.size() + 1;
+        return paperId;
     }
 
-    public void setAuthorId(Integer authorId) {
-        this.authorId = authorId;
+    public static Integer setAuthorId(Integer userId) {
+        return userId;
     }
 
-    public void setConferenceId(Integer conferenceId) {
-        this.conferenceId = conferenceId;
+
+
+    public static Integer setConferenceId(Integer conferenceId) {
+        return conferenceId;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
+
+
+
+    public static String setTopic() {
+        Dispaly.showTopics();
+        String newTopics = "";
+        boolean exit = false;
+        while (!exit) {
+            Scanner scanner = new Scanner(System.in);
+            String option = scanner.nextLine();
+            switch (option) {
+                case "1" -> {
+                    newTopics = "IT";
+                    exit = true;
+                }
+                case "2" -> {
+                    newTopics = "Medicine";
+                    exit = true;
+                }
+                case "3" -> {
+                    newTopics = "Education";
+                    exit = true;
+                }
+                case "4" -> {
+                    newTopics = "Art";
+                    exit = true;
+                }
+                case "5" -> {
+                    newTopics = "History";
+                    exit = true;
+                }
+                case "6" -> {
+                    newTopics = "Geography";
+                    exit = true;
+                }
+                case "7" -> {
+                    newTopics = "Biology";
+                    exit = true;
+                }
+                case "8" -> {
+                    newTopics = "Math";
+                    exit = true;
+                }
+                case "9" -> {
+                    newTopics = "Economy";
+                    exit = true;
+                }
+                case "10" -> {
+                    newTopics = "Others";
+                    exit = true;
+                }
+                default -> Dispaly.invalidInput();
+
+            }
+        }
+        System.out.println("you have choose: " + newTopics);
+        System.out.println();
+        return newTopics;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static String setName(String name) {
+        return name;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    public static String setFormat(String format) {
+        return format;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public static String setState() {
+        String state = "11";
+        return state;
     }
 
-    public void setSubmitTime(LocalDate submitTime) {
-        this.submitTime = submitTime;
+    public static LocalDate setSubmitTime() {
+        LocalDate submitTime = LocalDate.now();
+        return submitTime;
+    }
+
+    public static String setEvaluation(){
+        String EVA = "";
+        return EVA;
+
     }
 
     @Override
     public String toString() {
         return "Paper{" +
-                "id=" + id +
+                "id=" + paperId +
                 ", authorId=" + authorId +
                 ", conferenceId=" + conferenceId +
                 ", topic='" + topic + '\'' +

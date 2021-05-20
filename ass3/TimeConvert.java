@@ -12,4 +12,14 @@ public class TimeConvert {
         return LocalDate.parse(date, formatter);
     }
 
+    public static Boolean isDateVail(String date) {
+        boolean flag = true;
+        try {
+            LocalDate.parse(date, formatter);
+        } catch (Exception e) {
+            flag = false;
+        }
+        return flag;
+    }
+
 }
