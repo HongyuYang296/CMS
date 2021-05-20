@@ -3,4 +3,6 @@ public class Admin {
     private  String AdminPassword;
     private  String AdminType;
 
+
+
 }
