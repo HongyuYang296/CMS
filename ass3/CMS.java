@@ -233,24 +233,36 @@ public class CMS {
         }
     }
 
+    /**
+     * show reviewer list
+     */
     private void showReviewerList(){
         String listname = "reviewer";
         Dispaly.show(reviewerDatabase.getReviewerArrayList(), listname);
 
     }
 
-
+    /**
+     * user submit paper to paper database
+     * @param user
+     */
 
     private void submitPaper(User user){
         paperList.submitPaper(user);
 
     }
 
+    /**
+     * Show user list
+     */
     private void showUserList() {
         String listName = "users";
         Dispaly.show(users.getUserlist(), listName);
     }
 
+    /**
+     * show paper's name in the list
+     */
     private void showPaperList(){
         String listName = "papers";
         Dispaly.show(paperList.getPaperList(), listName);
