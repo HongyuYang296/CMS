@@ -7,13 +7,16 @@ import java.util.Scanner;
  * @version 1.0 (28 Apr 2021)
  */
 
+
 public class CMS {
     private final UserDatabase users;
     private final PaperDatabase paperList;
     private final ConferenceDatabase conferenceList;
     private final ReviewerDatabase reviewerDatabase;
     private boolean exitCMS;
-
+    /**
+     *  CMS attribute
+    */
     public CMS() {
         this.users = new UserDatabase();
         this.paperList = new PaperDatabase();
@@ -22,21 +25,37 @@ public class CMS {
         this.exitCMS = false;
     }
 
+    /**
+     * read user's database
+     */
     private void readUserdatabase(){
         users.readfile();
     }
 
+    /**
+     * read reviewer database
+     */
     private void readReviewerDatabase(){
         reviewerDatabase.readfile();
     }
 
+    /**
+     * read paper database
+     */
     private void readPaperDatabase(){
         paperList.readFile();
     }
 
+    /**
+     * read conference database
+     */
     private void readConferenceDatabase(){
         conferenceList.readFile();
     }
+
+    /**
+     * run main page
+     */
     private  void run() {
         mainPage();
     }
@@ -62,12 +81,18 @@ public class CMS {
             }
         }
     }
+
+    /**
+     * call user register function
+     */
     private void registration1() {
         users.registration();
     }
 
 
-
+    /**
+     * call user login function
+     */
     private void logIN(){
         Scanner input = new Scanner(java.lang.System.in);
         java.lang.System.out.println("imput email: ");
@@ -90,6 +115,9 @@ public class CMS {
 
     }
 
+    /**
+     * access to administration page
+     */
     private void adminPage(){
         boolean exit = false;
         while (!exit) {
@@ -107,6 +135,10 @@ public class CMS {
         }
     }
 
+    /**
+     * access to author page
+     * @param user
+     */
     private void authorPage(User user) {
         boolean exit = false;
         while (!exit) {
@@ -123,6 +155,10 @@ public class CMS {
         }
     }
 
+    /**
+     * access to reviewer page
+     * @param user
+     */
     private void reviewerPage(User user) {
         reviewerDatabase.upload();
         boolean exit = false;
@@ -143,6 +179,10 @@ public class CMS {
         }
     }
 
+    /**
+     * access to chari page
+     * @param user
+     */
     private void chairPage(User user){
         boolean exit = false;
         while (!exit) {
@@ -160,10 +200,18 @@ public class CMS {
         }
     }
 
+    /**
+     *  chair create a conference
+     */
     private void createConference(){
         conferenceList.creatConference();
     }
 
+    /**
+     * set Index for reviewer
+     * @param inputId
+     * @return     return index for reviewer
+     */
     public Integer getIndex(Integer inputId){
         Integer index = null;
         for (int i = 0; i < reviewerDatabase.getReviewerArrayList().size(); i++) {
@@ -173,12 +221,21 @@ public class CMS {
         }
         return index;
     }
+
+    /**
+     * select topics
+     * @param user
+     */
     private void selectTopics(User user){
 //        Reviewer newReviewer = reviewerDatabase.getReviewerArrayList().get(reviewerDatabase.getIndex(user.getUserid()));
 //        reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).setTopics(Reviewer.setTopic());
         reviewerDatabase.setTopics(getIndex(user.getUserid()));
     }
 
+    /**
+     * reviewer select one paper to review
+     * @param user
+     */
     private void selectPaper(User user){
         boolean exit = false;
 //        reviewerDatabase.getReviewerArrayList().get(reviewerDatabase.getIndex(user.getUserid()));
@@ -197,6 +254,10 @@ public class CMS {
         }
     }
 
+    /**
+     * chair select a  paper to assign
+     * @param user
+     */
     private void assignPaper(User user){
         boolean exit = false;
 //        reviewerDatabase.getReviewerArrayList().get(reviewerDatabase.getIndex(user.getUserid()));
@@ -215,6 +276,10 @@ public class CMS {
         }
     }
 
+    /**
+     * chair select a reviewer to assign the paper
+     * @param selectPaper
+     */
     private void assignPaper2(int selectPaper){
         boolean exit = false;
         while (!exit){
