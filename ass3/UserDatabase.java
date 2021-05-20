@@ -31,10 +31,10 @@ public class UserDatabase {
                 String line = scanner.nextLine();
                 if (line != null && !line.equals("")) {
                     String[] values = line.split(",");//split every word by ","
-
                     User userread = new User(Integer.parseInt(values[0]), values[1], values[2], values[3], values[4]);
                     userList.add(userread);
                 }
+
             }
         } catch (FileNotFoundException exception) {
             System.out.println(filename + " not found"); // print this if can't find file

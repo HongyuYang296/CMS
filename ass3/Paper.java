@@ -27,6 +27,12 @@ public class Paper
         this.submitTime = submitTime;
     }
 
+    public Paper(Integer id, String name){
+        this.paperId = id;
+        this.name = name;
+
+    }
+
 
     public Integer getPaperId() {
         return paperId;
@@ -151,6 +157,12 @@ public class Paper
     public static LocalDate setSubmitTime() {
         LocalDate submitTime = LocalDate.now();
         return submitTime;
+    }
+
+    public static String setEvaluation(){
+        String EVA = "";
+        return EVA;
+
     }
 
     @Override

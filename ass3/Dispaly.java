@@ -87,9 +87,10 @@ public class Dispaly {
         System.out.println();
         System.out.println("===============================");
         System.out.println("this is the Reviewer page");
-        System.out.println("    (1) select topics");
-        System.out.println("    (2) ");
-        System.out.println("    (3) Log off");
+        System.out.println("    (1) select relevant topics");
+        System.out.println("    (2) select paper to review");
+        System.out.println("    (3) submit evaluation");
+        System.out.println("    (4) Log off");
         System.out.println("===============================");
         System.out.println("select your options: ");
     }
@@ -128,6 +129,22 @@ public class Dispaly {
         System.out.println("paper upload failed");
         System.out.println("     ----" + reason);
         System.out.println("============================");
+    }
+
+    public static void showEvaluation(){
+        System.out.println();
+        System.out.println("===========================================================================");
+        System.out.println("please select give the evaluation: ");
+        System.out.println("'HD': high distinction, 'D': distinction, 'C': credit, 'P': pass, 'N': fail");
+        System.out.println("      (1) HD");
+        System.out.println("      (2) D");
+        System.out.println("      (3) C");
+        System.out.println("      (4) P");
+        System.out.println("      (5) N");
+        System.out.println("===========================================================================");
+        System.out.println("select your options: ");
+
+
     }
 }
 
