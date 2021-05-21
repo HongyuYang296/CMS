@@ -1,8 +1,6 @@
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,8 +17,8 @@ public class ConferenceDatabase {
 
     public ArrayList getNameList(){
         ArrayList<String> nameList = new ArrayList<>();
-        for (int i = 0; i < conferenceArrayList.size(); i++) {
-            nameList.add(conferenceArrayList.get(i).getConferenceName());
+        for (Conference conference : conferenceArrayList) {
+            nameList.add(conference.getConferenceName());
         }
         return nameList;
 
@@ -28,8 +26,8 @@ public class ConferenceDatabase {
 
     private ArrayList getIdList(){
         ArrayList<Integer> idList = new ArrayList<>();
-        for (int i = 0; i < conferenceArrayList.size(); i++) {
-            idList.add(conferenceArrayList.get(i).getConferenceId());
+        for (Conference conference : conferenceArrayList) {
+            idList.add(conference.getConferenceId());
         }
         return idList;
     }
@@ -51,8 +49,6 @@ public class ConferenceDatabase {
                     conferenceArrayList.add(readConference);
                 }
             }
-        } catch (FileNotFoundException exception) {
-            System.out.println(filename + " not found"); // print this if can't find file
         }
         catch (IOException exception) {
             System.out.println("Unexpected I/O error occurred"); // print this when something wrong
@@ -79,9 +75,9 @@ public class ConferenceDatabase {
             System.out.println("please select one conference: ");
             Scanner input = new Scanner(java.lang.System.in);
             inputValue = input.nextLine();
-            if (Verififer.isNumeric(inputValue) == true)// call function from Verifier calss
+            if (VeriFifer.isNumeric(inputValue))// call function from Verifier class
             {
-                Integer selectConference = Integer.parseInt(inputValue);
+                int selectConference = Integer.parseInt(inputValue);
                 if (selectConference > conferenceArrayList.size() || selectConference < 1)
                     System.out.println("don't have this conference");
 
@@ -101,13 +97,13 @@ public class ConferenceDatabase {
         String filename = ("conferenceDatabase.txt");
         try {
             PrintWriter outputFile = new PrintWriter(filename);
-            for (int i = 0; i < conferenceArrayList.size(); i++) {
-                outputFile.println(conferenceArrayList.get(i).getConferenceId()
-                        + "," + conferenceArrayList.get(i).getConferenceName()
-                        + "," + conferenceArrayList.get(i).getConferenceTitle()
-                        + "," + conferenceArrayList.get(i).getConferenceTopics()
-                        + "," + conferenceArrayList.get(i).getAcceptFormat()
-                        + "," + conferenceArrayList.get(i).getSubmitDateline());
+            for (Conference conference : conferenceArrayList) {
+                outputFile.println(conference.getConferenceId()
+                        + "," + conference.getConferenceName()
+                        + "," + conference.getConferenceTitle()
+                        + "," + conference.getConferenceTopics()
+                        + "," + conference.getAcceptFormat()
+                        + "," + conference.getSubmitDateline());
             }
             outputFile.close();
         } catch (IOException e) {

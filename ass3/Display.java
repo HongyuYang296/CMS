@@ -5,11 +5,13 @@ import java.util.ArrayList;
  * @author team56
  * @version 1.0 (28 Apr 2021)
  */
-public class Dispaly {
+public class Display {
     public static void printMenu() {
         System.out.println();
+        System.out.println("----------------------------");
+        System.out.println("            CMS");
         System.out.println("============================");
-        System.out.println("1. REGIST");
+        System.out.println("1. SIGN UP");
         System.out.println("2. LOG IN");
         System.out.println("3. EXIT");
         System.out.println("============================");
@@ -28,6 +30,7 @@ public class Dispaly {
     }
 
     public static void show(ArrayList arrayList, String listName) {
+        System.out.println();
         System.out.println(listName + " list: ");
         for (int i = 0; i < arrayList.size(); i++) {
             System.out.println((i + 1) + ". " + arrayList.get(i));
@@ -54,7 +57,7 @@ public class Dispaly {
     public static void showAdminPage(){
         System.out.println();
         System.out.println("================================");
-        System.out.println("this is the admin page");
+        System.out.println("This is the admin page");
         System.out.println("    (1) display all users");
         System.out.println("    (2) display all papers");
         System.out.println("    (3) Log off");
@@ -65,10 +68,11 @@ public class Dispaly {
     public static void showChairPage(){
         System.out.println();
         System.out.println("=============================");
-        System.out.println("this is the Chair page");
+        System.out.println("This is the Chair page");
         System.out.println("    (1) Creat Conference");
         System.out.println("    (2) Assign papers");
-        System.out.println("    (3) Log off");
+        System.out.println("    (3) final Decision");
+        System.out.println("    (4) Log off");
         System.out.println("=============================");
         System.out.println("select your options: ");
     }
@@ -76,7 +80,7 @@ public class Dispaly {
     public static void showAuthorPage(){
         System.out.println();
         System.out.println("===============================");
-        System.out.println("this is the Author page");
+        System.out.println("This is the Author page");
         System.out.println("    (1) submit paper");
         System.out.println("    (2) Log off");
         System.out.println("===============================");
@@ -86,7 +90,7 @@ public class Dispaly {
     public static void showReviewerPage(){
         System.out.println();
         System.out.println("===============================");
-        System.out.println("this is the Reviewer page");
+        System.out.println("This is the Reviewer page");
         System.out.println("    (1) select relevant topics");
         System.out.println("    (2) select paper to review");
         System.out.println("    (3) submit evaluation");
@@ -98,7 +102,7 @@ public class Dispaly {
     public static void showTopics(){
         System.out.println();
         System.out.println("==================================");
-        System.out.println("please select the related topic");
+        System.out.println("Please select the related topic");
         System.out.println("     (1) IT");
         System.out.println("     (2) Medicine");
         System.out.println("     (3) Education");
@@ -116,7 +120,7 @@ public class Dispaly {
     public static void showFileFormat(){
         System.out.println();
         System.out.println("================================");
-        System.out.println("please choose one accept format");
+        System.out.println("Please choose one accept format");
         System.out.println("      (1) docx");
         System.out.println("      (2) PDF");
         System.out.println("================================");
@@ -125,7 +129,7 @@ public class Dispaly {
 
     public static void uploadFailed(String reason){
         System.out.println();
-        System.out.println("===========================");
+        System.out.println("============================");
         System.out.println("paper upload failed");
         System.out.println("     ----" + reason);
         System.out.println("============================");
@@ -134,7 +138,7 @@ public class Dispaly {
     public static void showEvaluation(){
         System.out.println();
         System.out.println("===========================================================================");
-        System.out.println("please select give the evaluation: ");
+        System.out.println("Please select give the evaluation: ");
         System.out.println("'HD': high distinction, 'D': distinction, 'C': credit, 'P': pass, 'N': fail");
         System.out.println("      (1) HD");
         System.out.println("      (2) D");
@@ -143,8 +147,18 @@ public class Dispaly {
         System.out.println("      (5) N");
         System.out.println("===========================================================================");
         System.out.println("select your options: ");
+    }
 
 
+    public static void finalDecision(){
+        System.out.println();
+        System.out.println("=========================================");
+        System.out.println("Please give the final decision");
+        System.out.println("      (1) Accept");
+        System.out.println("      (2) Reject");
+        System.out.println("      (3) return to choose another paper");
+        System.out.println("=========================================");
+        System.out.println("please select your option: ");
     }
 }
 

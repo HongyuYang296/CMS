@@ -1,7 +1,5 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class Conference {
@@ -26,8 +24,7 @@ public class Conference {
     }
 
     public static Integer setConferenceId(ArrayList arrayList) {
-        Integer newConferenceId = arrayList.size() + 1;
-        return newConferenceId;
+        return arrayList.size() + 1;
     }
 
     public String getConferenceName() {
@@ -35,12 +32,12 @@ public class Conference {
     }
 
     public static String setConferenceName(ArrayList arrayList) {
-        boolean correctname = false;
+        boolean correctName = false;
         String newConferenceName = "";
-        while (!correctname) {
+        while (!correctName) {
             System.out.print("Enter conference name: ");
             Scanner scanner = new Scanner(System.in);
-            String name = scanner.nextLine().trim(); // remove blank in the begain and end
+            String name = scanner.nextLine().trim(); // remove blank in the begin and end
 
             if (arrayList.contains(name))// check if name have already exist
             {
@@ -50,7 +47,7 @@ public class Conference {
                 newConferenceName = name;// give name value to newName
                 System.out.println("     Name successfully set");
                 System.out.println();
-                correctname = true;//end the loop
+                correctName = true;//end the loop
             }
         }
         return newConferenceName;
@@ -63,67 +60,15 @@ public class Conference {
     public static String setConferenceTitle() {
         System.out.print("Enter conference Title: ");
         Scanner scanner = new Scanner(System.in);
-        String title = scanner.nextLine().trim(); // remove blank in the begain and end
-        return title;
+        return scanner.nextLine().trim(); // remove blank in the begin and end
     }
 
     public String getConferenceTopics() {
         return conferenceTopics;
     }
 
-    public static String setConferenceTopics() {
-        Dispaly.showTopics();
-        String newTopics = "";
-        boolean exit = false;
-        while (!exit) {
-            Scanner scanner = new Scanner(System.in);
-            String option = scanner.nextLine();
-            switch (option) {
-                case "1" -> {
-                    newTopics = "IT";
-                    exit = true;
-                }
-                case "2" -> {
-                    newTopics = "Medicine";
-                    exit = true;
-                }
-                case "3" -> {
-                    newTopics = "Education";
-                    exit = true;
-                }
-                case "4" -> {
-                    newTopics = "Art";
-                    exit = true;
-                }
-                case "5" -> {
-                    newTopics = "History";
-                    exit = true;
-                }
-                case "6" -> {
-                    newTopics = "Geography";
-                    exit = true;
-                }
-                case "7" -> {
-                    newTopics = "Biology";
-                    exit = true;
-                }
-                case "8" -> {
-                    newTopics = "Math";
-                    exit = true;
-                }
-                case "9" -> {
-                    newTopics = "Economy";
-                    exit = true;
-                }
-                case "10" -> {
-                    newTopics = "Others";
-                    exit = true;
-                }
-                default -> Dispaly.invalidInput();
-
-            }
-        }
-        return newTopics;
+    public static String setConferenceTopics(){
+        return Paper.setTopics();
     }
 
     public String getAcceptFormat() {
@@ -131,7 +76,7 @@ public class Conference {
     }
 
     public static String setAcceptFormat() {
-        Dispaly.showFileFormat();
+        Display.showFileFormat();
         String newFormat = "";
         boolean exit = false;
         while (!exit) {
@@ -146,7 +91,7 @@ public class Conference {
                     newFormat = "PDF";
                     exit = true;
                 }
-                default -> Dispaly.invalidInput();
+                default -> Display.invalidInput();
             }
         }
         return newFormat;
@@ -162,7 +107,7 @@ public class Conference {
         while (!correctDeadline) {
             System.out.print("Enter conference submit deadline(yyyy-mm-dd): ");
             Scanner scanner = new Scanner(System.in);
-            String inputDate = scanner.nextLine().trim(); // remove blank in the begain and end
+            String inputDate = scanner.nextLine().trim(); // remove blank in the begin and end
             if (!TimeConvert.isDateVail(inputDate)) {
                 System.out.println("please input correct format: yyyy-mm-dd");
                 System.out.println();

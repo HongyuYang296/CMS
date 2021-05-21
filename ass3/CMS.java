@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -7,16 +8,13 @@ import java.util.Scanner;
  * @version 1.0 (28 Apr 2021)
  */
 
-
 public class CMS {
     private final UserDatabase users;
     private final PaperDatabase paperList;
     private final ConferenceDatabase conferenceList;
     private final ReviewerDatabase reviewerDatabase;
     private boolean exitCMS;
-    /**
-     *  CMS attribute
-    */
+
     public CMS() {
         this.users = new UserDatabase();
         this.paperList = new PaperDatabase();
@@ -25,44 +23,28 @@ public class CMS {
         this.exitCMS = false;
     }
 
-    /**
-     * read user's database
-     */
-    private void readUserdatabase(){
-        users.readfile();
+    private void readUserDatabase(){
+        users.readFile();
     }
 
-    /**
-     * read reviewer database
-     */
     private void readReviewerDatabase(){
-        reviewerDatabase.readfile();
+        reviewerDatabase.readFile();
     }
 
-    /**
-     * read paper database
-     */
     private void readPaperDatabase(){
         paperList.readFile();
     }
 
-    /**
-     * read conference database
-     */
     private void readConferenceDatabase(){
         conferenceList.readFile();
     }
-
-    /**
-     * run main page
-     */
     private  void run() {
         mainPage();
     }
 
     private void mainPage(){
         while (!exitCMS) {
-            Dispaly.printMenu();
+            Display.printMenu();
             Scanner scanner = new Scanner(java.lang.System.in);
             String option = scanner.nextLine();
             switch (option) {
@@ -76,28 +58,22 @@ public class CMS {
                     reviewerDatabase.writeFile();
                     exitCMS = true;//end the while loop
                 }
-                default -> Dispaly.invalidInput();
+                default -> Display.invalidInput();
 
             }
         }
     }
-
-    /**
-     * call user register function
-     */
     private void registration1() {
         users.registration();
     }
 
 
-    /**
-     * call user login function
-     */
+
     private void logIN(){
         Scanner input = new Scanner(java.lang.System.in);
-        java.lang.System.out.println("imput email: ");
+        java.lang.System.out.println("input email: ");
         String email = input.nextLine();
-        java.lang.System.out.println("imput pass: ");
+        java.lang.System.out.println("input pass: ");
         String password = input.nextLine();
         User user = users.logIn(email,password);
         if (user != null && "Admin".equals((user.getUserType()))){
@@ -107,7 +83,7 @@ public class CMS {
             authorPage(user);
     }
         else if (user != null && "Chair".equals((user.getUserType()))){
-            chairPage(user);
+            chairPage();
         }
         else if (user != null && "Reviewer".equals((user.getUserType()))){
             reviewerPage(user);
@@ -115,13 +91,10 @@ public class CMS {
 
     }
 
-    /**
-     * access to administration page
-     */
     private void adminPage(){
         boolean exit = false;
         while (!exit) {
-            Dispaly.showAdminPage();
+            Display.showAdminPage();
             Scanner input2 = new Scanner(java.lang.System.in);
             String option = input2.nextLine();
             switch (option) {
@@ -135,14 +108,10 @@ public class CMS {
         }
     }
 
-    /**
-     * access to author page
-     * @param user
-     */
     private void authorPage(User user) {
         boolean exit = false;
         while (!exit) {
-            Dispaly.showAuthorPage();
+            Display.showAuthorPage();
             Scanner input2 = new Scanner(java.lang.System.in);
             String option = input2.nextLine();
             switch (option) {
@@ -155,44 +124,36 @@ public class CMS {
         }
     }
 
-    /**
-     * access to reviewer page
-     * @param user
-     */
     private void reviewerPage(User user) {
         reviewerDatabase.upload();
         boolean exit = false;
         while (!exit) {
-            Dispaly.showReviewerPage();
+            Display.showReviewerPage();
             Scanner input2 = new Scanner(java.lang.System.in);
             String option = input2.nextLine();
             switch (option) {
                 case "1" -> selectTopics(user);
                 case "2" -> selectPaper(user);
-                case "3" -> notfineshed();
+                case "3" -> giveEvaluation(user);
                 case "4" -> {
                     mainPage();
                     exit = true;
-
                 }
             }
         }
     }
 
-    /**
-     * access to chari page
-     * @param user
-     */
-    private void chairPage(User user){
+    private void chairPage(){
         boolean exit = false;
         while (!exit) {
-            Dispaly.showChairPage();
+            Display.showChairPage();
             Scanner input2 = new Scanner(java.lang.System.in);
             String option = input2.nextLine();
             switch (option) {
                 case "1" -> createConference();
-                case "2" -> assignPaper(user);
-                case "3" -> {
+                case "2" -> assignPaper();
+                case "3" -> finalDecision();
+                case "4" -> {
                     mainPage();
                     exit = true;
                 }
@@ -200,18 +161,10 @@ public class CMS {
         }
     }
 
-    /**
-     *  chair create a conference
-     */
     private void createConference(){
         conferenceList.creatConference();
     }
 
-    /**
-     * set Index for reviewer
-     * @param inputId
-     * @return     return index for reviewer
-     */
     public Integer getIndex(Integer inputId){
         Integer index = null;
         for (int i = 0; i < reviewerDatabase.getReviewerArrayList().size(); i++) {
@@ -221,24 +174,12 @@ public class CMS {
         }
         return index;
     }
-
-    /**
-     * select topics
-     * @param user
-     */
     private void selectTopics(User user){
-//        Reviewer newReviewer = reviewerDatabase.getReviewerArrayList().get(reviewerDatabase.getIndex(user.getUserid()));
-//        reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).setTopics(Reviewer.setTopic());
         reviewerDatabase.setTopics(getIndex(user.getUserid()));
     }
 
-    /**
-     * reviewer select one paper to review
-     * @param user
-     */
     private void selectPaper(User user){
         boolean exit = false;
-//        reviewerDatabase.getReviewerArrayList().get(reviewerDatabase.getIndex(user.getUserid()));
         while (!exit) {
             showPaperList();
             System.out.println("please select one paper to review: ");
@@ -254,11 +195,8 @@ public class CMS {
         }
     }
 
-    /**
-     * chair select a  paper to assign
-     * @param user
-     */
-    private void assignPaper(User user){
+
+    private void assignPaper(){
         boolean exit = false;
 //        reviewerDatabase.getReviewerArrayList().get(reviewerDatabase.getIndex(user.getUserid()));
         while (!exit) {
@@ -276,10 +214,7 @@ public class CMS {
         }
     }
 
-    /**
-     * chair select a reviewer to assign the paper
-     * @param selectPaper
-     */
+
     private void assignPaper2(int selectPaper){
         boolean exit = false;
         while (!exit){
@@ -298,48 +233,118 @@ public class CMS {
         }
     }
 
-    /**
-     * show reviewer list
-     */
-    private void showReviewerList(){
-        String listname = "reviewer";
-        Dispaly.show(reviewerDatabase.getReviewerArrayList(), listname);
-
+    private int getPaperIndex(int input){
+        int index = 0;
+        for (int i = 0; i < paperList.getPaperList().size(); i++) {
+            if (input == paperList.getPaperList().get(i).getPaperId()) {
+                index = i;
+            }
+        }
+        return index;
     }
 
-    /**
-     * user submit paper to paper database
-     * @param user
-     */
+    private void giveEvaluation(User user){
+        System.out.println("please select one paper for giving evaluation(input paper ID)");
+        showReviewerPaper(reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).getPaperList());
+        System.out.println("please select your options: ");
+        Scanner input = new Scanner(java.lang.System.in);
+        int selectPaper = Integer.parseInt(input.nextLine());
+        boolean exit = false;
+        while (!exit){
+            if (!paperList.getIdList().contains(selectPaper)){
+                System.out.println("paper not exit!");
+            }
+            else {
+                paperList.getPaperList().get(getPaperIndex(selectPaper)).setEvaluation();
+                exit = true;
+            }
+        }
+    }
+
+    private void finalDecision(){
+        int selectPaper = selectPaper();
+        boolean exit = false;
+        while (!exit) {
+            Display.finalDecision();
+            Scanner input = new Scanner(java.lang.System.in);
+            String option = input.nextLine();
+            switch (option) {
+                case "1" ->  {
+                    paperList.getPaperList().get(getPaperIndex(selectPaper)).setState1("accept");
+                    exit = true;
+                }
+
+
+                case "2" -> {
+                    paperList.getPaperList().get(getPaperIndex(selectPaper)).setState1("reject");
+                    exit = true;
+                }
+
+                case "3" -> {
+                    selectPaper();
+                    exit = true;
+                }
+            }
+        }
+    }
+
+    private int selectPaper(){
+        boolean exit = false;
+        int choosePaperID = 0;
+        while (!exit) {
+            showPaperList();
+            Scanner input = new Scanner(java.lang.System.in);
+            int selectPaper = Integer.parseInt(input.nextLine());
+            if (!paperList.getIdList().contains(selectPaper)){
+                System.out.println("paper not exit!");
+            }
+            else {
+                System.out.println();
+                System.out.println("you have choose: ");
+                System.out.println("paper id: " + paperList.getPaperList().get(getPaperIndex(selectPaper)).getPaperId()
+                        + ", paper name: " + paperList.getPaperList().get(getPaperIndex(selectPaper)).getName() + ", evaluation: "
+                        + paperList.getPaperList().get(getPaperIndex(selectPaper)).getEvaluation());
+                choosePaperID = selectPaper;
+                exit = true;
+            }
+        }
+        return choosePaperID;
+    }
+
+
+    private void showReviewerPaper(ArrayList<Integer> reviewerPaperList){
+        for (Integer integer : reviewerPaperList) {
+            System.out.println(paperList.getPaperList().get(getPaperIndex(integer)));
+        }
+    }
+
+
+    private void showReviewerList(){
+        String listName = "reviewer";
+        Display.show(reviewerDatabase.getReviewerArrayList(), listName);
+    }
+
 
     private void submitPaper(User user){
         paperList.submitPaper(user);
 
     }
 
-    /**
-     * Show user list
-     */
     private void showUserList() {
         String listName = "users";
-        Dispaly.show(users.getUserlist(), listName);
+        Display.show(users.getUserList(), listName);
     }
 
-    /**
-     * show paper's name in the list
-     */
     private void showPaperList(){
         String listName = "papers";
-        Dispaly.show(paperList.getPaperList(), listName);
+        Display.show(paperList.getPaperList(), listName);
+        System.out.println("please select your options: ");
     }
 
-    private void notfineshed(){
-        System.out.println("not finished");
-    }
 
     public static void main(String[] args) {
         CMS s = new CMS();
-        s.readUserdatabase();
+        s.readUserDatabase();
         s.readPaperDatabase();
         s.readConferenceDatabase();
         s.readReviewerDatabase();

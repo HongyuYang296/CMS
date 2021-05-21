@@ -29,8 +29,7 @@ public class User{
     }
 
     public static int setUserid(ArrayList arrayList) {
-        Integer newUserid = arrayList.size() + 1;
-        return newUserid;
+        return arrayList.size() + 1;
     }
 
     public String getUserName() {
@@ -38,16 +37,16 @@ public class User{
     }
 
     public static String setUserName(ArrayList arrayList) {
-        boolean correctname = false;
+        boolean correctName = false;
         String newUserName = "";
-        while (!correctname)
+        while (!correctName)
         {
             System.out.print("Enter user name: ");
             Scanner scanner = new Scanner(System.in);
-            String inputname = scanner.nextLine();
-            String name = inputname.trim(); // remove blank in the begain and end
+            String inputName = scanner.nextLine();
+            String name = inputName.trim(); // remove blank in the begin and end
 
-            if (!Verififer.isalphabetic(name)) // use a method from Verifier Class to check the string "name"
+            if (!VeriFifer.isAlphabetic(name)) // use a method from Verifier Class to check the string "name"
             {
                 System.out.println("     name must not be blank, must be alphabetic, must not contain commas");
                 System.out.println();
@@ -57,7 +56,7 @@ public class User{
                 System.out.println("     sorry, " + name + " already registered!");
                 System.out.println();
             }
-            else if (Verififer.isNumeric(name))
+            else if (VeriFifer.isNumeric(name))
             {
                 System.out.println("     name must not be blank, must be alphabetic, must not contain commas");
                 System.out.println();
@@ -67,7 +66,7 @@ public class User{
                 newUserName = name;// give name value to newName
                 System.out.println("     Name successfully set");
                 System.out.println();
-                correctname = true;//end the loop
+                correctName = true;//end the loop
             }
         }
         return newUserName;
@@ -78,29 +77,29 @@ public class User{
     }
 
     public static String setUserEmail(ArrayList arrayList) {
-        boolean correctemail = false;
+        boolean correctEmail = false;
         String newUserEmail = "";
-        while (!correctemail)
+        while (!correctEmail)
         {
 
             System.out.print("Enter user email: ");
             Scanner scanner = new Scanner(System.in);
-            String inputemail = scanner.nextLine().trim();
+            String inputEmail = scanner.nextLine().trim();
             try
             {
-                if (arrayList.contains(inputemail)) {
-                    System.out.println("     Sorry, " + inputemail + " is already used");
+                if (arrayList.contains(inputEmail)) {
+                    System.out.println("     Sorry, " + inputEmail + " is already used");
                     System.out.println();
                 }
-                else if(!Verififer.isValid(inputemail)){
+                else if(!VeriFifer.isValid(inputEmail)){
                     System.out.println("      wrong email format");
                     System.out.println();
                 }
                 else {
-                    newUserEmail = inputemail;
+                    newUserEmail = inputEmail;
                     System.out.println("      email successfully set");
                     System.out.println();
-                    correctemail = true;
+                    correctEmail = true;
                 }
             }
             catch (NumberFormatException e)
@@ -121,17 +120,17 @@ public class User{
         String newUserPassword = "";
         while (!correctPassword)
         {
-            Dispaly.showPasswordTips();
+            Display.showPasswordTips();
             Scanner scanner = new Scanner(System.in);
-            String inputpassword = scanner.nextLine().trim();
+            String inputPassword = scanner.nextLine().trim();
             try
             {
-                if(!Verififer.validPassword(inputpassword)){
+                if(!VeriFifer.validPassword(inputPassword)){
                     System.out.println("      wrong password format");
                     System.out.println();
                 }
                 else {
-                    newUserPassword = inputpassword;
+                    newUserPassword = inputPassword;
                     System.out.println("      password successfully set");
                     System.out.println();
                     correctPassword = true;
@@ -151,7 +150,7 @@ public class User{
     }
 
     public static String setUserType() {
-        Dispaly.showUserType();
+        Display.showUserType();
         String newUserType = "";
         boolean exit = false;
         while (!exit) {
@@ -174,14 +173,14 @@ public class User{
                     newUserType = "Admin";
                     exit = true;
                 }
-                default -> {
-                    Dispaly.invalidInput();
-                }
+                default -> Display.invalidInput();
+
             }
         }
         System.out.println("type successfully selected");
         return newUserType;
     }
+
 
     @Override
     public String toString() {

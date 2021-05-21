@@ -1,7 +1,6 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class PaperDatabase {
@@ -15,9 +14,11 @@ public class PaperDatabase {
         return paperArrayList;
 
     }
+
+
     public void readFile(){
         Scanner scanner = null;
-        String filename = ("paperdatabase.txt");
+        String filename = ("paperDatabase.txt");
         try {
             FileReader reader = new FileReader(filename);
             scanner = new Scanner(reader);
@@ -25,17 +26,13 @@ public class PaperDatabase {
             {
                 String line = scanner.nextLine();
                 if (line != null && !line.equals("")) {
-                    String[] values = line.split(",");//split every word by ","
-
-
+                    String[] values = line.split(","); //split every word by ","
                     Paper paperRead = new Paper(Integer.parseInt(values[0]), Integer.parseInt(values[1]),
                             Integer.parseInt(values[2]), values[3], values[4], values[5],values[6],
-                            TimeConvert.toDate(values[7]));
+                            TimeConvert.toDate(values[7]),values[8]);
                     paperArrayList.add(paperRead);
                 }
             }
-        } catch (FileNotFoundException exception) {
-            System.out.println(filename + " not found"); // print this if can't find file
         } catch (IOException exception) {
             System.out.println("Unexpected I/O error occurred"); // print this when something wrong
         } finally {
@@ -45,15 +42,13 @@ public class PaperDatabase {
 
     }
 
-    private ArrayList getIdList(){
-        ArrayList<Integer> idlist = new ArrayList<>();
-        for (int i = 0; i < paperArrayList.size(); i++) {
-            idlist.add(paperArrayList.get(i).getPaperId());
+    public ArrayList getIdList(){
+        ArrayList<Integer> idList = new ArrayList<>();
+        for (Paper paper : paperArrayList) {
+            idList.add(paper.getPaperId());
         }
-        return idlist;
+        return idList;
     }
-
-
 
 
 
@@ -73,9 +68,9 @@ public class PaperDatabase {
             System.out.println("Please select submit paper: ");
             Scanner input = new Scanner(java.lang.System.in);
             inputValue = input.nextLine();
-            if (Verififer.isNumeric(inputValue) == true)// call function from Verifier calss
+            if (VeriFifer.isNumeric(inputValue))// call function from Verifier class
             {
-                Integer selectConference = Integer.parseInt(inputValue);
+                int selectConference = Integer.parseInt(inputValue);
                 if (selectConference > fs.length || selectConference < 1)
                     System.out.println("don't have this conference");
 
@@ -96,8 +91,7 @@ public class PaperDatabase {
         return strArray[suffixIndex];
     }
     public static String getFileName(String file){
-        String fileName = file.substring(0,file.lastIndexOf("."));
-        return fileName;
+        return file.substring(0,file.lastIndexOf("."));
     }
 
 
@@ -109,18 +103,18 @@ public class PaperDatabase {
 
         if (!Paper.setSubmitTime().isBefore(deadLine)
                 && !getFileType(file).equals(conferenceList.getConferenceArrayList().get(conId-1).getAcceptFormat())){
-            Dispaly.uploadFailed("Later than deadline & Wrong format");
+            Display.uploadFailed("Later than deadline & Wrong format");
         }
         else if (!Paper.setSubmitTime().isBefore(deadLine)) {
-            Dispaly.uploadFailed("Later than deadline");
+            Display.uploadFailed("Later than deadline");
         }
         else if (!getFileType(file).equals(conferenceList.getConferenceArrayList().get(conId-1).getAcceptFormat())){
-            Dispaly.uploadFailed("Wrong format");
+            Display.uploadFailed("Wrong format");
         }
-
         else {
+            String newEvaluation = "null";
             Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserid()), Paper.setConferenceId(conId),
-                    Paper.setTopic(), Paper.setName(getFileName(file)), Paper.setFormat(getFileType(file)), Paper.setState(), Paper.setSubmitTime());
+                    Paper.setTopic(), Paper.setName(getFileName(file)), Paper.setFormat(getFileType(file)), Paper.setState("submitted"), Paper.setSubmitTime(), newEvaluation);
             paperArrayList.add(submitPaper);
             System.out.println();
             System.out.println("paper upload successfully!");
@@ -129,14 +123,15 @@ public class PaperDatabase {
 
     }
     public void writeFile() {
-        String filename = ("paperdatabase.txt");
+        String filename = ("paperDatabase.txt");
         try {
             PrintWriter outputFile = new PrintWriter(filename);
-            for (int i = 0; i < paperArrayList.size(); i++) {
-                outputFile.println(paperArrayList.get(i).getPaperId() + "," + paperArrayList.get(i).getAuthorId()
-                        + "," + paperArrayList.get(i).getConferenceId() + "," + paperArrayList.get(i).getTopic()
-                        + "," + paperArrayList.get(i).getName() + "," + paperArrayList.get(i).getFormat()
-                        + "," + paperArrayList.get(i).getState() + "," + paperArrayList.get(i).getSubmitTime());
+            for (Paper paper : paperArrayList) {
+                outputFile.println(paper.getPaperId() + "," + paper.getAuthorId()
+                        + "," + paper.getConferenceId() + "," + paper.getTopic()
+                        + "," + paper.getName() + "," + paper.getFormat()
+                        + "," + paper.getState() + "," + paper.getSubmitTime()
+                        + "," + paper.getEvaluation());
 
             }
             outputFile.close();

@@ -1,17 +1,17 @@
 /**
- * check if the input is unmeric or not
+ * check if the input is numeric or not
  *
  * @ parameter: string str
  * @ local variable: boolean isNumeric
  */
-public class Verififer {
+public class VeriFifer {
 
-    public static boolean isalphabetic(String str) {
-        boolean isalphabetic = false;
+    public static boolean isAlphabetic(String str) {
+        boolean isAlphabetic = false;
         for (int i = 0; i < str.length(); i++) {
-            isalphabetic = Character.isLetter(str.charAt(i)) && !str.contains(",");
+            isAlphabetic = Character.isLetter(str.charAt(i)) && !str.contains(",");
         }
-        return isalphabetic;
+        return isAlphabetic;
     }
 
     public static boolean isNumeric(String str) {

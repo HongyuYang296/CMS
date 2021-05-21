@@ -12,11 +12,12 @@ public class Paper
     private String format;
     private String state;
     private LocalDate submitTime;
+    private String evaluation;
 
 
     public Paper(Integer id, Integer authorId, Integer conferenceId,
                  String topic, String name, String format,
-                 String state, LocalDate submitTime) {
+                 String state, LocalDate submitTime, String evaluation) {
         this.paperId = id;
         this.authorId = authorId;
         this.conferenceId = conferenceId;
@@ -25,14 +26,8 @@ public class Paper
         this.format = format;
         this.state = state;
         this.submitTime = submitTime;
+        this.evaluation = evaluation;
     }
-
-    public Paper(Integer id, String name){
-        this.paperId = id;
-        this.name = name;
-
-    }
-
 
     public Integer getPaperId() {
         return paperId;
@@ -66,9 +61,12 @@ public class Paper
         return submitTime;
     }
 
+    public String getEvaluation(){
+        return evaluation;
+    }
+
     public static Integer setPaperId(ArrayList arrayList) {
-        Integer paperId = arrayList.size() + 1;
-        return paperId;
+        return arrayList.size() + 1;
     }
 
     public static Integer setAuthorId(Integer userId) {
@@ -85,7 +83,14 @@ public class Paper
 
 
     public static String setTopic() {
-        Dispaly.showTopics();
+        String newTopics = setTopics();
+        System.out.println("you have choose: " + newTopics);
+        System.out.println();
+        return newTopics;
+    }
+
+    public static String setTopics(){
+        Display.showTopics();
         String newTopics = "";
         boolean exit = false;
         while (!exit) {
@@ -132,12 +137,10 @@ public class Paper
                     newTopics = "Others";
                     exit = true;
                 }
-                default -> Dispaly.invalidInput();
+                default -> Display.invalidInput();
 
             }
         }
-        System.out.println("you have choose: " + newTopics);
-        System.out.println();
         return newTopics;
     }
 
@@ -149,26 +152,56 @@ public class Paper
         return format;
     }
 
-    public static String setState() {
-        String state = "11";
-        return state;
+    public static String setState(String str) {
+        return str;
     }
+
+    public void setState1(String str){
+        state = str;
+    }
+
 
     public static LocalDate setSubmitTime() {
-        LocalDate submitTime = LocalDate.now();
-        return submitTime;
+        return LocalDate.now();
     }
 
-    public static String setEvaluation(){
-        String EVA = "";
-        return EVA;
 
+    public void setEvaluation() {
+        Display.showEvaluation();
+        String newEVA = "";
+        boolean exit = false;
+        while (!exit) {
+            Scanner scanner = new Scanner(System.in);
+            String option = scanner.nextLine();
+            switch (option) {
+                case "1" -> {
+                    newEVA = "HD";
+                    exit = true;
+                }
+                case "2" -> {
+                    newEVA = "D";
+                    exit = true;
+                }
+                case "3" -> {
+                    newEVA = "C";
+                    exit = true;
+                }
+                case "4" -> {
+                    newEVA = "P";
+                    exit = true;
+                }
+                case "5" -> {
+                    newEVA = "N";
+                    exit = true;
+                }
+            }
+        }
+        evaluation = newEVA;
     }
 
     @Override
     public String toString() {
-        return "Paper{" +
-                "id=" + paperId +
+        return "paperId=" + paperId +
                 ", authorId=" + authorId +
                 ", conferenceId=" + conferenceId +
                 ", topic='" + topic + '\'' +
@@ -176,7 +209,7 @@ public class Paper
                 ", format='" + format + '\'' +
                 ", state='" + state + '\'' +
                 ", submitTime=" + submitTime +
-                '}';
+                ", evaluation='" + evaluation + '\'';
     }
 }
 

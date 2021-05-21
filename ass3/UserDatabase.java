@@ -16,13 +16,13 @@ public class UserDatabase {
         this.userList = new ArrayList<>();
     }
 
-    public ArrayList<User> getUserlist() {
+    public ArrayList<User> getUserList() {
         return userList;
     }
 
-    public void readfile() {
+    public void readFile() {
         Scanner scanner = null;
-        String filename = ("userdatabase.txt");
+        String filename = ("userDatabase.txt");
         try {
             FileReader reader = new FileReader(filename);
             scanner = new Scanner(reader);
@@ -31,14 +31,12 @@ public class UserDatabase {
                 String line = scanner.nextLine();
                 if (line != null && !line.equals("")) {
                     String[] values = line.split(",");//split every word by ","
-                    User userread = new User(Integer.parseInt(values[0]), values[1], values[2], values[3], values[4]);
-                    userList.add(userread);
+                    User userRead = new User(Integer.parseInt(values[0]), values[1], values[2], values[3], values[4]);
+                    userList.add(userRead);
                 }
 
             }
-        } catch (FileNotFoundException exception) {
-            System.out.println(filename + " not found"); // print this if can't find file
-        } catch (IOException exception) {
+        }  catch (IOException exception) {
             System.out.println("Unexpected I/O error occurred"); // print this when something wrong
         } finally {
             if (scanner != null)
@@ -47,13 +45,13 @@ public class UserDatabase {
     }
 
     public void writeFile() {
-        String filename = ("userdatabase.txt");
+        String filename = ("userDatabase.txt");
 
         try {
             PrintWriter outputFile = new PrintWriter(filename);
-            for (int i = 0; i < userList.size(); i++) {
-                outputFile.println(userList.get(i).getUserid() + "," + userList.get(i).getUserName()
-                        + "," + userList.get(i).getUserEmail() + "," + userList.get(i).getUserPassword() + "," + userList.get(i).getUserType());
+            for (User user : userList) {
+                outputFile.println(user.getUserid() + "," + user.getUserName()
+                        + "," + user.getUserEmail() + "," + user.getUserPassword() + "," + user.getUserType());
 
             }
             outputFile.close();
@@ -63,25 +61,25 @@ public class UserDatabase {
     }
 
     public ArrayList getIdList() {
-        ArrayList<Integer> idlist = new ArrayList<>();
-        for (int i = 0; i < userList.size(); i++) {
-            idlist.add(userList.get(i).getUserid());
+        ArrayList<Integer> idList = new ArrayList<>();
+        for (User user : userList) {
+            idList.add(user.getUserid());
         }
-        return idlist;
+        return idList;
     }
 
     public ArrayList getNameList() {
         ArrayList<String> nameList = new ArrayList<>();
-        for (int i = 0; i < userList.size(); i++) {
-            nameList.add(userList.get(i).getUserName());
+        for (User user : userList) {
+            nameList.add(user.getUserName());
         }
         return nameList;
     }
 
     public ArrayList getEmailList() {
         ArrayList<String> emailList = new ArrayList<>();
-        for (int i = 0; i < userList.size(); i++) {
-            emailList.add(userList.get(i).getUserName());
+        for (User user : userList) {
+            emailList.add(user.getUserName());
         }
         return emailList;
     }
@@ -97,13 +95,13 @@ public class UserDatabase {
             User targetUser = userList.stream()
                     .filter(user -> user.getUserEmail().equals(email))
                     .findFirst()
-                    .orElseThrow(() -> new Exception("user not exist"));
+                    .orElseThrow(() -> new Exception("user not exist!"));
 
             if (!targetUser.getUserPassword().equals(password)) {
-                throw new Exception("password wrong");
+                throw new Exception("password wrong!");
 
             }
-            System.out.println("log in successful");
+            System.out.println("log in successful!");
             return targetUser;
 
         } catch (Exception e) {

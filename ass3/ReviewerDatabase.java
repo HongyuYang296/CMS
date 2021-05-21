@@ -1,8 +1,6 @@
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,16 +12,16 @@ public class ReviewerDatabase {
     }
 
     public ArrayList getIdList(){
-        ArrayList<Integer> idlist = new ArrayList<>();
-        for (int i = 0; i < reviewerArrayList.size(); i++) {
-            idlist.add(reviewerArrayList.get(i).getId());
+        ArrayList<Integer> idList = new ArrayList<>();
+        for (Reviewer reviewer : reviewerArrayList) {
+            idList.add(reviewer.getId());
         }
-        return idlist;
+        return idList;
     }
 
     public void upload() {
         Scanner scanner = null;
-        String filename = ("userdatabase.txt");
+        String filename = ("userDatabase.txt");
         try {
             FileReader reader = new FileReader(filename);
             scanner = new Scanner(reader);
@@ -38,23 +36,21 @@ public class ReviewerDatabase {
                         Reviewer newReviewer = new Reviewer(Integer.parseInt(values[0]), values[1], topics, arrayList);
                         if (!getIdList().contains(newReviewer.getId()))
                             reviewerArrayList.add(newReviewer);
-
                     }
                 }
-
             }
-        } catch (FileNotFoundException exception) {
-            System.out.println(filename + " not found"); // print this if can't find file
-        } catch (IOException exception) {
+        }
+        catch (IOException exception) {
             System.out.println("Unexpected I/O error occurred"); // print this when something wrong
-        } finally {
+        }
+        finally {
             if (scanner != null)
                 scanner.close();
         }
 
     }
 
-    public void readfile() {
+    public void readFile() {
     Scanner scanner = null;
     String filename = ("reviewerDatabase.txt");
         try {
@@ -100,10 +96,7 @@ public class ReviewerDatabase {
                 }
             }
         }
-    } catch (
-    FileNotFoundException exception) {
-        System.out.println(filename + " not found"); // print this if can't find file
-    } catch (
+    }  catch (
     IOException exception) {
         System.out.println("Unexpected I/O error occurred"); // print this when something wrong
     } finally {
@@ -112,24 +105,10 @@ public class ReviewerDatabase {
     }
     }
 
-    public Integer getIndex(Integer inputId){
-        Integer index = null;
-        for (int i = 0; i < reviewerArrayList.size(); i++) {
-            if (inputId == reviewerArrayList.get(i).getId()){
-                index = i;
-            }
-        }
-        return index;
-    }
+
 
     public void setTopics(int index){
         getReviewerArrayList().get(index).setTopics(Reviewer.setTopic());
-//        if (getReviewerArrayList().get(index).getRelevantTopics() == "null")
-//            getReviewerArrayList().get(index).setTopics(Reviewer.setTopic());
-//        else {
-//            System.out.println("reviewer already choose relevant topics!");
-//        }
-
     }
 
     public void selectPaper(int index, int paperID){
@@ -144,11 +123,11 @@ public class ReviewerDatabase {
         String filename = ("reviewerDatabase.txt");
         try {
             PrintWriter outputFile = new PrintWriter(filename);
-            for (int i = 0; i < reviewerArrayList.size(); i++) {
-                outputFile.println(reviewerArrayList.get(i).getId()
-                        + "," + reviewerArrayList.get(i).getName()
-                        + "," + reviewerArrayList.get(i).getRelevantTopics()
-                        + "," + reviewerArrayList.get(i).getPaperList());
+            for (Reviewer reviewer : reviewerArrayList) {
+                outputFile.println(reviewer.getId()
+                        + "," + reviewer.getName()
+                        + "," + reviewer.getRelevantTopics()
+                        + "," + reviewer.getPaperList());
             }
             outputFile.close();
         } catch (IOException e) {
