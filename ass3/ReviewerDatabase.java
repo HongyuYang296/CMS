@@ -19,6 +19,7 @@ public class ReviewerDatabase {
         return idList;
     }
 
+
     public void upload() {
         Scanner scanner = null;
         String filename = ("userDatabase.txt");
@@ -112,11 +113,16 @@ public class ReviewerDatabase {
     }
 
     public void selectPaper(int index, int paperID){
-        if (getReviewerArrayList().get(index).getPaperList().size() < 3)
-            getReviewerArrayList().get(index).addPaper(paperID);
-        else {
+        if (getReviewerArrayList().get(index).getPaperList().size() >= 3)
             System.out.println("one reviewer can only select max 3 papers!");
+        else if (reviewerArrayList.get(index).getPaperList().contains(paperID)){
+            System.out.println("Reviewer has already have this paper!");
         }
+        else {
+            getReviewerArrayList().get(index).addPaper(paperID);
+        }
+
+
     }
 
     public void writeFile() {
@@ -134,13 +140,6 @@ public class ReviewerDatabase {
             System.out.println("Unexpected I/O error occurred");// print this when something wrong
         }
     }
-
-
-
-
-
-
-
 
 
     public ArrayList<Reviewer> getReviewerArrayList() {

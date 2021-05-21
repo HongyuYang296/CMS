@@ -24,7 +24,7 @@ public class ConferenceDatabase {
 
     }
 
-    private ArrayList getIdList(){
+    public ArrayList getIdList(){
         ArrayList<Integer> idList = new ArrayList<>();
         for (Conference conference : conferenceArrayList) {
             idList.add(conference.getConferenceId());

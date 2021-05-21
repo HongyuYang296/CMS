@@ -1,11 +1,17 @@
 import java.util.ArrayList;
 /**
- * Write a description of class here.
+ * Display class aim to display UI design
+ *
  *
  * @author team56
- * @version 1.0 (28 Apr 2021)
+ * @version 1.0 (21 May 2021)
  */
+
 public class Display {
+
+    /**
+     * This method print main menu
+     */
     public static void printMenu() {
         System.out.println();
         System.out.println("----------------------------");
@@ -18,6 +24,9 @@ public class Display {
         System.out.println("please enter your choose: ");
     }
 
+    /**
+     * This method show some requirement of setting password.
+     */
     public static void showPasswordTips() {
         System.out.println("Password must contain:");
         System.out.println("                       at least one digit [0-9].");
@@ -29,6 +38,12 @@ public class Display {
         System.out.print("Enter user password: ");
     }
 
+    /**
+     * This method show all the elements of input arraylist.
+     *
+     * @param arrayList input a arraylist and using for loop show all elements.
+     * @param listName name of input arraylist
+     */
     public static void show(ArrayList arrayList, String listName) {
         System.out.println();
         System.out.println(listName + " list: ");
@@ -37,14 +52,21 @@ public class Display {
         }
     }
 
+    /**
+     * This method show invalid input
+     */
     public static void invalidInput() {
-        System.out.println("##ERROR: Invalid input##");
-        System.out.println("please enter again");
         System.out.println();
+        System.out.println("================================");
+        System.out.println("## ERROR: Invalid input ##");
+        System.out.println("please enter again");
         System.out.println("================================");
         System.out.println();
     }
 
+    /**
+     * This method show different user type for selecting.
+     */
     public static void showUserType() {
         System.out.println("please choose one type");
         System.out.println("                      (1) Author ");
@@ -54,6 +76,9 @@ public class Display {
         System.out.println("select your options: ");
     }
 
+    /**
+     *
+     */
     public static void showAdminPage(){
         System.out.println();
         System.out.println("================================");
@@ -65,6 +90,9 @@ public class Display {
         System.out.println("select your options: ");
     }
 
+    /**
+     *
+     */
     public static void showChairPage(){
         System.out.println();
         System.out.println("=============================");
@@ -77,6 +105,9 @@ public class Display {
         System.out.println("select your options: ");
     }
 
+    /**
+     *
+     */
     public static void showAuthorPage(){
         System.out.println();
         System.out.println("===============================");
@@ -87,6 +118,9 @@ public class Display {
         System.out.println("select your options: ");
     }
 
+    /**
+     *
+     */
     public static void showReviewerPage(){
         System.out.println();
         System.out.println("===============================");
@@ -99,6 +133,9 @@ public class Display {
         System.out.println("select your options: ");
     }
 
+    /**
+     *
+     */
     public static void showTopics(){
         System.out.println();
         System.out.println("==================================");
@@ -117,6 +154,9 @@ public class Display {
         System.out.println("select your options: ");
     }
 
+    /**
+     *
+     */
     public static void showFileFormat(){
         System.out.println();
         System.out.println("================================");
@@ -127,6 +167,11 @@ public class Display {
         System.out.println("please select your options: ");
     }
 
+    /**
+     * This method shows upload failed information and reason.
+     *
+     * @param reason input reason of upload failed.
+     */
     public static void uploadFailed(String reason){
         System.out.println();
         System.out.println("============================");
@@ -135,6 +180,9 @@ public class Display {
         System.out.println("============================");
     }
 
+    /**
+     *
+     */
     public static void showEvaluation(){
         System.out.println();
         System.out.println("===========================================================================");
@@ -149,14 +197,16 @@ public class Display {
         System.out.println("select your options: ");
     }
 
-
+    /**
+     *
+     */
     public static void finalDecision(){
         System.out.println();
         System.out.println("=========================================");
         System.out.println("Please give the final decision");
         System.out.println("      (1) Accept");
         System.out.println("      (2) Reject");
-        System.out.println("      (3) return to choose another paper");
+        System.out.println("      (3) return to chair page");
         System.out.println("=========================================");
         System.out.println("please select your option: ");
     }

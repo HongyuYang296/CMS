@@ -49,6 +49,14 @@ public class PaperDatabase {
         }
         return idList;
     }
+    public ArrayList getNameList(){
+        ArrayList<String> nameList = new ArrayList<>();
+        for (Paper paper : paperArrayList) {
+            nameList.add(paper.getName());
+        }
+        return nameList;
+    }
+
 
 
 
@@ -72,7 +80,7 @@ public class PaperDatabase {
             {
                 int selectConference = Integer.parseInt(inputValue);
                 if (selectConference > fs.length || selectConference < 1)
-                    System.out.println("don't have this conference");
+                    System.out.println("don't have this paper");
 
                 else {
                     System.out.println("you have choose " + fs[selectConference-1 ].getName());// selection-1 means get index
@@ -90,6 +98,7 @@ public class PaperDatabase {
         int suffixIndex = strArray.length -1;
         return strArray[suffixIndex];
     }
+
     public static String getFileName(String file){
         return file.substring(0,file.lastIndexOf("."));
     }

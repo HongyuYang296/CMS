@@ -1,7 +1,12 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ *
+ *
+ * @author team56
+ * @version 2.0 (21 May 2021)
+ */
 public class Conference {
     private Integer conferenceId;
     private String conferenceName;
@@ -60,7 +65,9 @@ public class Conference {
     public static String setConferenceTitle() {
         System.out.print("Enter conference Title: ");
         Scanner scanner = new Scanner(System.in);
+        System.out.println("       Title successfully set");
         return scanner.nextLine().trim(); // remove blank in the begin and end
+
     }
 
     public String getConferenceTopics() {

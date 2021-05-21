@@ -50,17 +50,27 @@ public class Reviewer {
 
     public void addPaper(Integer paperId){
         paperList.add(paperId);
+        System.out.println("successfully add one paper --> paperID: " + paperId);
+    }
+
+
+    public void removePaper(int paperID){
+        for (int i = 0; i < paperList.size(); i++) {
+            if (paperID == paperList.get(i)) {
+                paperList.remove(i);
+                System.out.println("successfully remove one paper --> paperID: " + paperID);
+            }
+        }
     }
 
 
     @Override
     public String toString() {
-        return "Reviewer{" +
-                "id=" + id +
+        return
+                "reviewerId=" + id +
                 ", name='" + name + '\'' +
                 ", relevantTopics='" + relevantTopics + '\'' +
-                ", paperList=" + paperList +
-                '}';
+                ", paperList=" + paperList;
     }
 
 }
