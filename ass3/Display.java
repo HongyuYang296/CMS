@@ -92,7 +92,7 @@ public class Display {
         System.out.println();
         System.out.println("=============================");
         System.out.println("This is the Chair page");
-        System.out.println("    (1) Creat Conference");
+        System.out.println("    (1) Create Conference");
         System.out.println("    (2) Assign papers");
         System.out.println("    (3) final Decision");
         System.out.println("    (4) Log off");

@@ -7,7 +7,7 @@ import java.util.Scanner;
  * @version 1.0 (28 Apr 2021)
  */
 public class User{
-    private   int userid;
+    private   int userId;
     private   String userName;
     private   String userEmail;
     private  String userPassword;
@@ -16,8 +16,8 @@ public class User{
     /**
      * Constructor for objects of class Borrower
      */
-    public User(int userid, String userName, String userEmail, String userPassword, String userType) {
-        this.userid = userid;
+    public User(int userId, String userName, String userEmail, String userPassword, String userType) {
+        this.userId = userId;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
@@ -25,8 +25,8 @@ public class User{
     }
 
 
-    public int getUserid() {
-        return userid;
+    public int getUserId() {
+        return userId;
     }
 
     /**
@@ -209,7 +209,7 @@ public class User{
 
     @Override
     public String toString() {
-        return "userID: " + userid + ", userName: " + userName+ ", " +
+        return "userID: " + userId + ", userName: " + userName+ ", " +
                 "userEmail: " + userEmail + ", userPassword: "
                 + userPassword + ", userType: " + userType;
     }
