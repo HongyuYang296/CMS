@@ -24,6 +24,10 @@ public class User{
         this.userType = userType;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getUserid() {
         return userid;
     }
@@ -178,6 +182,8 @@ public class User{
             }
         }
         System.out.println("type successfully selected");
+        System.out.println("---------------------------");
+        System.out.println("  Sign up successfully  ");
         return newUserType;
     }
 
