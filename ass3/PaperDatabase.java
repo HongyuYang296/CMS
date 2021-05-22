@@ -2,20 +2,30 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * This class manage paperDatabase, read and write file to "paperDatabase.txt"
+ *
+ *
+ * @author team56
+ * @version 2.0 (21 May 2021)
+ */
 public class PaperDatabase {
     private ArrayList<Paper> paperArrayList;
 
+    /**
+     * constructor of PaperDatabase class
+     */
     public PaperDatabase(){
         this.paperArrayList = new ArrayList<>();
     }
 
     public ArrayList<Paper> getPaperList(){
         return paperArrayList;
-
     }
 
-
+    /**
+     * This method read "paperDatabase.txt" line by line and save information into paperArrayList
+     */
     public void readFile(){
         Scanner scanner = null;
         String filename = ("paperDatabase.txt");
@@ -56,9 +66,6 @@ public class PaperDatabase {
         }
         return nameList;
     }
-
-
-
 
     public static String selectPaper(){
         String path = "papers";
@@ -103,10 +110,10 @@ public class PaperDatabase {
         return file.substring(0,file.lastIndexOf("."));
     }
 
-
     public void submitPaper(User user){
         String file = selectPaper();
         ConferenceDatabase conferenceList = new ConferenceDatabase();
+        conferenceList.readFile();
         int conId = conferenceList.selectConference();
         LocalDate deadLine = conferenceList.getConferenceArrayList().get(conId-1).getSubmitDateline();
 

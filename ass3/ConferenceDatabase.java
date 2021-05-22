@@ -13,6 +13,9 @@ import java.util.Scanner;
 public class ConferenceDatabase {
     private ArrayList<Conference> conferenceArrayList;
 
+    /**
+     * constructor of ConferenceDatabase class
+     */
     public ConferenceDatabase() {
         this.conferenceArrayList = new ArrayList<>();
     }
@@ -21,15 +24,22 @@ public class ConferenceDatabase {
         return conferenceArrayList;
     }
 
+    /**
+     * This class use for loop get conference name arraylist
+     * @return nameList conference name arraylist
+     */
     public ArrayList getNameList(){
         ArrayList<String> nameList = new ArrayList<>();
         for (Conference conference : conferenceArrayList) {
             nameList.add(conference.getConferenceName());
         }
         return nameList;
-
     }
 
+    /**
+     * This class use for loop get conference ID arraylist
+     * @return idList conference ID arraylist
+     */
     public ArrayList getIdList(){
         ArrayList<Integer> idList = new ArrayList<>();
         for (Conference conference : conferenceArrayList) {
@@ -39,6 +49,9 @@ public class ConferenceDatabase {
     }
 
 
+    /**
+     * This method read "conferenceDatabase.txt" line by line and save information into conferenceArrayList
+     */
     public void readFile(){
         Scanner scanner = null;
         String filename = ("conferenceDatabase.txt");
@@ -55,6 +68,7 @@ public class ConferenceDatabase {
                     conferenceArrayList.add(readConference);
                 }
             }
+
         }
         catch (IOException exception) {
             System.out.println("Unexpected I/O error occurred"); // print this when something wrong
@@ -65,40 +79,42 @@ public class ConferenceDatabase {
         }
     }
 
-
-    public Integer selectConference(){
-        readFile();
+    /**
+     * This method select conference by conference id
+     *
+     * @return selectConferenceID
+     * @see Display#show(ArrayList, String)
+     * @exception NumberFormatException
+     */
+    public int selectConference(){
+        int selectConferenceID = 0;
         boolean exit = false;
-        String inputValue = "";
-        while (!exit) {
-            System.out.println();
-            System.out.println("=====================================================================================");
-            System.out.println("conferences list: ");
-            for (int i = 0; i < conferenceArrayList.size(); i++) {
-                System.out.println("     " + (i+1) + ". " + conferenceArrayList.get(i));
-            }
-            System.out.println("=====================================================================================");
+        while (!exit){
+            Display.show(conferenceArrayList, "Conference");
             System.out.println("please select one conference: ");
-            Scanner input = new Scanner(java.lang.System.in);
-            inputValue = input.nextLine();
-            if (VeriFifer.isNumeric(inputValue))// call function from Verifier class
-            {
-                int selectConference = Integer.parseInt(inputValue);
-                if (selectConference > conferenceArrayList.size() || selectConference < 1)
-                    System.out.println("don't have this conference");
-
-                else {
-                    System.out.println("you have choose " + getConferenceArrayList().get(selectConference - 1));// selection-1 means get index
-                    exit = true;//end the loop
+            try {
+                Scanner input = new Scanner(java.lang.System.in);
+                int selectConference = Integer.parseInt(input.nextLine());
+                if (!getIdList().contains(selectConference)) {
+                    System.out.println("Conference not exit!");
+                } else {
+                    selectConferenceID = selectConference;
+                    System.out.println("you have choose: " + conferenceArrayList.get(selectConferenceID - 1));
+                    System.out.println();
+                    exit = true;
                 }
-            } else {
-                System.out.println("not digit input, please input again");
+            }
+            catch (NumberFormatException e) {
+                Display.invalidInput();
             }
         }
-        return Integer.parseInt(inputValue);
-
-
+        return selectConferenceID;
     }
+
+    /**
+     * This method write conference arraylist into "conferenceDatabase.txt"
+     * split by ","
+     */
     public void writeFile() {
         String filename = ("conferenceDatabase.txt");
         try {
@@ -117,6 +133,16 @@ public class ConferenceDatabase {
         }
     }
 
+    /**
+     * This method use method from conference to create new conference
+     *
+     * @see Conference#setConferenceId(ArrayList)
+     * @see Conference#setConferenceName(ArrayList)
+     * @see Conference#setConferenceTitle()
+     * @see Conference#setConferenceTopics()
+     * @see Conference#setAcceptFormat()
+     * @see Conference#setSubmitDeadline()
+     */
     public void creatConference(){
         Conference newConference = new Conference(Conference.setConferenceId(getIdList()),
                 Conference.setConferenceName(getNameList()), Conference.setConferenceTitle(),
@@ -125,8 +151,6 @@ public class ConferenceDatabase {
         System.out.println();
         System.out.println("conference create successfully");
     }
-
-
 }
 
 

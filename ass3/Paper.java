@@ -1,7 +1,12 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ *This class manage paper, set and get paper attributes
+ *
+ * @author team56
+ * @version 2.0 (21 May 2021)
+ */
 public class Paper
 {
     private Integer paperId;
@@ -14,7 +19,18 @@ public class Paper
     private LocalDate submitTime;
     private String evaluation;
 
-
+    /**
+     * constructor of paper class
+     * @param id id
+     * @param authorId author id same with user class
+     * @param conferenceId conference id from conference class
+     * @param topic topic
+     * @param name name
+     * @param format format
+     * @param state state(submitted, accept, reject)
+     * @param submitTime submit local time
+     * @param evaluation evaluation(HD,D,C,P,N)
+     */
     public Paper(Integer id, Integer authorId, Integer conferenceId,
                  String topic, String name, String format,
                  String state, LocalDate submitTime, String evaluation) {
@@ -65,6 +81,11 @@ public class Paper
         return evaluation;
     }
 
+    /**
+     * set paper ID automatically, increased by 1
+     * @param arrayList input paper arraylist
+     * @return new paper id
+     */
     public static Integer setPaperId(ArrayList arrayList) {
         return arrayList.size() + 1;
     }
@@ -73,14 +94,9 @@ public class Paper
         return userId;
     }
 
-
-
     public static Integer setConferenceId(Integer conferenceId) {
         return conferenceId;
     }
-
-
-
 
     public static String setTopic() {
         String newTopics = setTopics();
@@ -89,6 +105,10 @@ public class Paper
         return newTopics;
     }
 
+    /**
+     * this method use switch to ask user select topics
+     * @return newTopics select topic
+     */
     public static String setTopics(){
         Display.showTopics();
         String newTopics = "";
@@ -165,7 +185,9 @@ public class Paper
         return LocalDate.now();
     }
 
-
+    /**
+     * This method use switch ask user select evaluations(HD,D,C,P,N)
+     */
     public void setEvaluation() {
         Display.showEvaluation();
         String newEVA = "";

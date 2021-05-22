@@ -76,9 +76,6 @@ public class Display {
         System.out.println("select your options: ");
     }
 
-    /**
-     *
-     */
     public static void showAdminPage(){
         System.out.println();
         System.out.println("================================");
@@ -90,9 +87,7 @@ public class Display {
         System.out.println("select your options: ");
     }
 
-    /**
-     *
-     */
+
     public static void showChairPage(){
         System.out.println();
         System.out.println("=============================");
@@ -105,9 +100,6 @@ public class Display {
         System.out.println("select your options: ");
     }
 
-    /**
-     *
-     */
     public static void showAuthorPage(){
         System.out.println();
         System.out.println("===============================");
@@ -118,9 +110,6 @@ public class Display {
         System.out.println("select your options: ");
     }
 
-    /**
-     *
-     */
     public static void showReviewerPage(){
         System.out.println();
         System.out.println("===============================");
@@ -133,9 +122,7 @@ public class Display {
         System.out.println("select your options: ");
     }
 
-    /**
-     *
-     */
+
     public static void showTopics(){
         System.out.println();
         System.out.println("==================================");
@@ -154,9 +141,7 @@ public class Display {
         System.out.println("select your options: ");
     }
 
-    /**
-     *
-     */
+
     public static void showFileFormat(){
         System.out.println();
         System.out.println("================================");
@@ -180,9 +165,7 @@ public class Display {
         System.out.println("============================");
     }
 
-    /**
-     *
-     */
+
     public static void showEvaluation(){
         System.out.println();
         System.out.println("===========================================================================");
@@ -197,9 +180,7 @@ public class Display {
         System.out.println("select your options: ");
     }
 
-    /**
-     *
-     */
+
     public static void finalDecision(){
         System.out.println();
         System.out.println("=========================================");
@@ -210,6 +191,7 @@ public class Display {
         System.out.println("=========================================");
         System.out.println("please select your option: ");
     }
+
 
     public static void showTry(){
         System.out.println();

@@ -117,7 +117,7 @@ public class CMS {
             Scanner input2 = new Scanner(java.lang.System.in);
             String option = input2.nextLine();
             switch (option) {
-                case "1" -> users.logIn();
+                case "1" -> logIN();
                 case "2" -> {
                     mainPage();
                     exit = true;
@@ -453,38 +453,19 @@ public class CMS {
      * @see Display#invalidInput()
      * @return selectConferenceID
      */
-    private int selectConference(){
-        int selectConferenceID = 0;
-        boolean exit = false;
-        while (!exit){
-            showConferenceList();
-            System.out.println("please select one conference");
-            try {
-                Scanner input = new Scanner(java.lang.System.in);
-                int selectConference = Integer.parseInt(input.nextLine());
-                if (!conferenceList.getIdList().contains(selectConference)) {
-                    System.out.println("Conference not exit!");
-                } else {
-                    selectConferenceID = selectConference;
-                    exit = true;
-                }
-            }
-            catch (NumberFormatException e) {
-                Display.invalidInput();
-            }
-        }
-        return selectConferenceID;
-    }
+
 
     /**
      * This method show all the paper from select conference
      * then ask chair to select one paper for final decision
      *
+     * @see ConferenceDatabase#selectConference()
+     * @see PaperDatabase#getPaperList()
      * @exception NumberFormatException e when input not int, throw out exception
      * @return choosePaperID
      */
     private int getSelectPaper(){
-        int selectConference = selectConference();
+        int selectConference = conferenceList.selectConference();
         boolean exit = false;
         int choosePaperID = 0;
         while (!exit) {
@@ -509,8 +490,6 @@ public class CMS {
         }
         return choosePaperID;
     }
-
-
 
     /**
      * This method shows all the paper form select conference
@@ -549,17 +528,6 @@ public class CMS {
      */
     private void showPaperList(){
         Display.show(paperList.getPaperList(), "papers");
-        System.out.println();
-    }
-
-    /**
-     * This method shows all elements of conference arraylist
-     *
-     * @see ConferenceDatabase#getConferenceArrayList()
-     * @see Display#show(ArrayList, String)
-     */
-    private void showConferenceList(){
-        Display.show(conferenceList.getConferenceArrayList(), "Conference");
         System.out.println();
     }
 
