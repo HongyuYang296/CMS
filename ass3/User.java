@@ -24,14 +24,16 @@ public class User{
         this.userType = userType;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public int getUserid() {
         return userid;
     }
 
+    /**
+     * set user id
+     * @param arrayList     id are stored in arraylist
+     * @return              Numbers in the same order as id in the ArrayList
+     */
     public static int setUserid(ArrayList arrayList) {
         return arrayList.size() + 1;
     }
@@ -40,6 +42,11 @@ public class User{
         return userName;
     }
 
+    /**
+     *set user name and validate input name
+     * @param arrayList    arraylist store user name
+     * @return             new user name
+     */
     public static String setUserName(ArrayList arrayList) {
         boolean correctName = false;
         String newUserName = "";
@@ -79,7 +86,11 @@ public class User{
     public String getUserEmail() {
         return userEmail;
     }
-
+    /**
+     *set user email and validate input email
+     * @param arrayList    arraylist store user email
+     * @return             new user email
+     */
     public static String setUserEmail(ArrayList arrayList) {
         boolean correctEmail = false;
         String newUserEmail = "";
@@ -119,6 +130,10 @@ public class User{
         return userPassword;
     }
 
+    /**
+     * set user password and validate input password
+     * @return   new user password
+     */
     public static String setUserPassword() {
         boolean correctPassword = false;
         String newUserPassword = "";
@@ -153,6 +168,10 @@ public class User{
         return userType;
     }
 
+    /**
+     * choose user type
+     * @return          new user type
+     */
     public static String setUserType() {
         Display.showUserType();
         String newUserType = "";
