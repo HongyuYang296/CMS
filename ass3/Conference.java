@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
- *This class manage
+ *This class manage conference, set and get conference attributes
  *
  * @author team56
  * @version 2.0 (21 May 2021)
@@ -15,13 +15,23 @@ public class Conference {
     private String acceptFormat;
     private LocalDate submitDeadline;
 
-    public Conference(Integer conferenceId, String conferenceName, String conferenceTitle, String conferenceTopics, String acceptFormat, LocalDate submitDateline) {
+    /**
+     * constructor of Conference class
+     *
+     * @param conferenceId input conference id
+     * @param conferenceName input conference name
+     * @param conferenceTitle input conference title
+     * @param conferenceTopics input conference topics
+     * @param acceptFormat input conference format
+     * @param submitDeadline input conference deadline
+     */
+    public Conference(Integer conferenceId, String conferenceName, String conferenceTitle, String conferenceTopics, String acceptFormat, LocalDate submitDeadline) {
         this.conferenceId = conferenceId;
         this.conferenceName = conferenceName;
         this.conferenceTitle = conferenceTitle;
         this.conferenceTopics = conferenceTopics;
         this.acceptFormat = acceptFormat;
-        this.submitDeadline = submitDateline;
+        this.submitDeadline = submitDeadline;
     }
 
     public Integer getConferenceId() {
@@ -36,6 +46,12 @@ public class Conference {
         return conferenceName;
     }
 
+    /**
+     * This method check and set the conference name, avoid repeat name
+     *
+     * @param arrayList input conference name arraylist
+     * @return newConferenceName
+     */
     public static String setConferenceName(ArrayList arrayList) {
         boolean correctName = false;
         String newConferenceName = "";
@@ -82,6 +98,11 @@ public class Conference {
         return acceptFormat;
     }
 
+    /**
+     * This method use switch to set conference accept paper format
+     *
+     * @return newFormat accept format
+     */
     public static String setAcceptFormat() {
         Display.showFileFormat();
         String newFormat = "";
@@ -108,6 +129,13 @@ public class Conference {
         return submitDeadline;
     }
 
+    /**
+     * check input date and set deadline
+     *
+     * @see TimeConvert#isDateVail(String)
+     * @see TimeConvert#toDate(String)
+     * @return newDeadline
+     */
     public static LocalDate setSubmitDeadline() {
         boolean correctDeadline = false;
         LocalDate newDeadline = LocalDate.now();
@@ -126,6 +154,7 @@ public class Conference {
         }
         return newDeadline;
     }
+
 
     @Override
     public String toString() {

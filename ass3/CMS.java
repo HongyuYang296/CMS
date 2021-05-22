@@ -84,15 +84,10 @@ public class CMS {
     /**
      * This method log into system and automatically go to different user page based on different role of users
      *
-     * @see UserDatabase#logIn(String, String)
+     * @see UserDatabase#logIn()
      */
     private void logIN(){
-        Scanner input = new Scanner(java.lang.System.in);
-        java.lang.System.out.println("input email: ");
-        String email = input.nextLine();
-        java.lang.System.out.println("input pass: ");
-        String password = input.nextLine();
-        User user = users.logIn(email,password);
+        User user = users.logIn();
         if (user != null && "Admin".equals((user.getUserType()))){
             adminPage();
         }
@@ -104,6 +99,31 @@ public class CMS {
         }
         else if (user != null && "Reviewer".equals((user.getUserType()))){
             reviewerPage(user);
+        }
+        else if (user == null)  tryAgain();
+    }
+
+    /**
+     * This method run when log in failed ask user log in again or exit.
+     *
+     * @see UserDatabase#logIn()
+     * @see Display#showTry()
+     * @see Display#invalidInput()
+     */
+    private void tryAgain(){
+        boolean exit = false;
+        while (!exit) {
+            Display.showTry();
+            Scanner input2 = new Scanner(java.lang.System.in);
+            String option = input2.nextLine();
+            switch (option) {
+                case "1" -> users.logIn();
+                case "2" -> {
+                    mainPage();
+                    exit = true;
+                }
+                default -> Display.invalidInput();
+            }
         }
     }
 

@@ -210,6 +210,14 @@ public class Display {
         System.out.println("=========================================");
         System.out.println("please select your option: ");
     }
+
+    public static void showTry(){
+        System.out.println();
+        System.out.println("===========================");
+        System.out.println("   (1) try again");
+        System.out.println("   (2) return to main menu");
+        System.out.println("===========================");
+    }
 }
 
 
