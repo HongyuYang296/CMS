@@ -177,7 +177,9 @@ public class User{
 
             }
         }
-        System.out.println("type successfully selected");
+        System.out.println("Type successfully selected");
+        System.out.println("==========================");
+        System.out.println("Sign up successfully selected");
         return newUserType;
     }
 

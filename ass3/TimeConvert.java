@@ -1,7 +1,8 @@
 import java.time.LocalDate;//use the package
 import java.time.format.DateTimeFormatter; //use the package
 
-public class TimeConvert { //creating the TimeConvert class
+//creating the TimeConvert class
+public class TimeConvert {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static String toString(LocalDate date){
