@@ -169,8 +169,8 @@ public class User{
     }
 
     /**
-     * choose user type
-     * @return          new user type
+     * choose user type by using switch
+     * @return newUserType new user type
      */
     public static String setUserType() {
         Display.showUserType();
@@ -205,7 +205,6 @@ public class User{
         System.out.println("  Sign up successfully  ");
         return newUserType;
     }
-
 
     @Override
     public String toString() {

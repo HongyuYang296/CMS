@@ -231,10 +231,10 @@ public class CMS {
     /**
      * This method create new conference by calling method from class ConferenceDatabase
      *
-     * @see ConferenceDatabase#createConference()
+     * @see ConferenceDatabase#creatConference()
      */
     private void createConference(){
-        conferenceList.createConference();
+        conferenceList.creatConference();
     }
 
     /**
@@ -262,7 +262,7 @@ public class CMS {
      * @param user user who log in
      */
     private void selectTopics(User user){
-        reviewerDatabase.setTopics(getIndex(user.getUserId()));
+        reviewerDatabase.setTopics(getIndex(user.getUserid()));
     }
 
     /**
@@ -285,7 +285,7 @@ public class CMS {
                 if (selectPaper < 0 || selectPaper > paperList.getPaperList().size()) {
                     System.out.println("selected paper not exit!");
                 } else {
-                    reviewerDatabase.selectPaper(getIndex(user.getUserId()), selectPaper);
+                    reviewerDatabase.selectPaper(getIndex(user.getUserid()), selectPaper);
                     exit = true;
                 }
             }
@@ -388,21 +388,21 @@ public class CMS {
         while (!exit){
             System.out.println("Paper under reviewing: ");
             // show all the paper of reviewer
-            Display.show(reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserId())).getPaperList(),
-                    "paper already have:");
+            Display.show(reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).getPaperList(),
+                    " already have paper");
             System.out.println();
             System.out.println("Please please select one paper for giving evaluation(Please input paper ID): ");
             try {
                 Scanner input = new Scanner(java.lang.System.in);
                 int selectPaper = Integer.parseInt(input.nextLine());
                 // check if the select paper exit in reviewer's paper list
-                if (!reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserId())).getPaperList().contains(selectPaper)) {
+                if (!reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).getPaperList().contains(selectPaper)) {
                     System.out.println("Paper not exit!");
                     System.out.println();
                 } else {
                     paperList.getPaperList().get(getPaperIndex(selectPaper)).setEvaluation();
                     // when give evaluation remove it from arraylist
-                    reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserId())).removePaper(selectPaper);
+                    reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).removePaper(selectPaper);
                     exit = true;
                 }
             }

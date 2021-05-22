@@ -11,7 +11,7 @@ public class VeriFifer {
      * This method checks the input is alphabetic or not
      *
      * @param str input String
-     * @return isAlphabetic if the input is Alphabetic and don't have "," return true, else return false.
+     * @return true input is alphabetic and don't contains ",", false input not alphabetic
      */
     public static boolean isAlphabetic(String str) {
         boolean isAlphabetic = false;
@@ -25,7 +25,7 @@ public class VeriFifer {
      * This method check if the input is numeric or not
      *
      * @param str input String
-     * @return isNumeric if the input is numeric return true, else return false.
+     * @return true input is numeric, false input not numeric
      */
     public static boolean isNumeric(String str) {
         boolean isNumeric = false;
@@ -36,19 +36,21 @@ public class VeriFifer {
     }
 
     /**
-     * This method
-     * @param email
-     * @return
+     * This method validate if email has correct format
+     * @param email input email
+     * @return true format correct, false format incorrect
      */
     public static boolean isValid(String email) {
         String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return email.matches(regex);
     }
-    public static boolean issValid(String email) {
-        String regex = "\\p{Alpha} + \\p{Digit} + ";
-        return email.matches(regex);
-    }
 
+    /**
+     * This method validate if password has correct format
+     *
+     * @param password input password
+     * @return true format correct, false format incorrect
+     */
     public static boolean validPassword(String password) {
         String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;.',?/*~$^+=<>]).{6,20}$";
         return password.matches(regex);

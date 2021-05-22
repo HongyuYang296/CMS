@@ -3,10 +3,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * This class manage ReviewerDatabase, read and write file to "reviewerDatabase.txt"
+ *
+ *
+ * @author team56
+ * @version 2.0 (21 May 2021)
+ */
 public class ReviewerDatabase {
     private ArrayList<Reviewer> reviewerArrayList;
 
+    /**
+     * constructor of ReviewerDatabase
+     */
     public ReviewerDatabase(){
         this.reviewerArrayList = new ArrayList<>();
     }
@@ -19,7 +28,11 @@ public class ReviewerDatabase {
         return idList;
     }
 
-
+    /**
+     * This method read "userDatabase.txt"
+     * select user type which is reviewer and upload to reviewer arraylist
+     * @see Reviewer#Reviewer(int, String, String, ArrayList)
+     */
     public void upload() {
         Scanner scanner = null;
         String filename = ("userDatabase.txt");
@@ -35,8 +48,9 @@ public class ReviewerDatabase {
                         ArrayList<Integer> arrayList = new ArrayList<>();
                         String topics = "null";
                         Reviewer newReviewer = new Reviewer(Integer.parseInt(values[0]), values[1], topics, arrayList);
-                        if (!getIdList().contains(newReviewer.getId()))
+                        if (!getIdList().contains(newReviewer.getId())) {
                             reviewerArrayList.add(newReviewer);
+                        }
                     }
                 }
             }
@@ -48,9 +62,14 @@ public class ReviewerDatabase {
             if (scanner != null)
                 scanner.close();
         }
-
     }
 
+    /**
+     * This method read "reviewerDatabase.txt" line by line and save information into reviewerArraylist
+     * because one reviewer can max have 3 papers so there are 3 different situations
+     *
+     * @see Reviewer#Reviewer(int, String, String, ArrayList)
+     */
     public void readFile() {
     Scanner scanner = null;
     String filename = ("reviewerDatabase.txt");
@@ -112,6 +131,14 @@ public class ReviewerDatabase {
         getReviewerArrayList().get(index).setTopics(Reviewer.setTopic());
     }
 
+    /**
+     * This method input reviewer index and paper id,
+     * check if there are already have 3 paper and if input paper already in the list
+     * then add paper in paper list of reviewer
+     *
+     * @param index reviewer index
+     * @param paperID paper id
+     */
     public void selectPaper(int index, int paperID){
         if (getReviewerArrayList().get(index).getPaperList().size() >= 3)
             System.out.println("one reviewer can only select max 3 papers!");
@@ -121,10 +148,12 @@ public class ReviewerDatabase {
         else {
             getReviewerArrayList().get(index).addPaper(paperID);
         }
-
-
     }
 
+    /**
+     * This method write reviewer arraylist into "reviewerDatabase.txt"
+     * split by ","
+     */
     public void writeFile() {
         String filename = ("reviewerDatabase.txt");
         try {
@@ -140,7 +169,6 @@ public class ReviewerDatabase {
             System.out.println("Unexpected I/O error occurred");// print this when something wrong
         }
     }
-
 
     public ArrayList<Reviewer> getReviewerArrayList() {
         return reviewerArrayList;

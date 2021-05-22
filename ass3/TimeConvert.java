@@ -1,7 +1,11 @@
 import java.time.LocalDate;//use the package
 import java.time.format.DateTimeFormatter; //use the package
-
-//creating the TimeConvert class
+/**
+ *This class is a tool class convert and validate time format
+ *
+ * @author team56
+ * @version 2.0 (21 May 2021)
+ */
 public class TimeConvert {
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 

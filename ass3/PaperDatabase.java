@@ -1,6 +1,7 @@
 import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 /**
  * This class manage paperDatabase, read and write file to "paperDatabase.txt"
@@ -49,9 +50,12 @@ public class PaperDatabase {
             if (scanner != null)
                 scanner.close();
         }
-
     }
 
+    /**
+     * This method use for loop get paper ID arraylist
+     * @return idList paper ID arraylist
+     */
     public ArrayList getIdList(){
         ArrayList<Integer> idList = new ArrayList<>();
         for (Paper paper : paperArrayList) {
@@ -59,6 +63,11 @@ public class PaperDatabase {
         }
         return idList;
     }
+
+    /**
+     * This method use for loop get paper name arraylist
+     * @return idList paper name arraylist
+     */
     public ArrayList getNameList(){
         ArrayList<String> nameList = new ArrayList<>();
         for (Paper paper : paperArrayList) {
@@ -67,6 +76,13 @@ public class PaperDatabase {
         return nameList;
     }
 
+    /**
+     * This method read and list all the paper in folder "papers"
+     * then ask user to select one
+     *
+     * @see VeriFifer#isNumeric(String)
+     * @return select paper name
+     */
     public static String selectPaper(){
         String path = "papers";
         File file = new File(path);
@@ -76,7 +92,8 @@ public class PaperDatabase {
         while (!exit) {
             System.out.println();
             System.out.println("========================");
-            for (int i = 0; i < fs.length; i++) {
+            // make sure fs not null
+            for (int i = 0; i < Objects.requireNonNull(fs).length; i++) {
                 System.out.println((i+1) + ". " + fs[i].getName());
             }
             System.out.println("========================");
@@ -100,19 +117,43 @@ public class PaperDatabase {
         return fs[Integer.parseInt(inputValue) -1].getName();
     }
 
-
+    /**
+     * This method input file full name eg: xxx.PDF, then get file type
+     * file type is part after "."
+     *
+     * @param file file full name
+     * @return file type name
+     */
     public static String getFileType(String file){
         String[] strArray = file.split("\\.");
         int suffixIndex = strArray.length -1;
         return strArray[suffixIndex];
     }
-
+    /**
+     * This method input file full name eg: xxx.PDF, then get file name
+     * file type is part before "."
+     *
+     * @param file file full name
+     * @return file type name
+     */
     public static String getFileName(String file){
         return file.substring(0,file.lastIndexOf("."));
     }
 
     /**
-     * submit paper, and determine upload file time and format
+     * This method check the deadline and format
+     * then create new paper by using method from Paper class
+     *
+     * @param user user who log in
+     * @see Paper#setPaperId(ArrayList)
+     * @see Paper#setAuthorId(Integer)
+     * @see Paper#setConferenceId(Integer)
+     * @see Paper#setName(String)
+     * @see Paper#setFormat(String)
+     * @see Paper#setState(String)
+     * @see Paper#setSubmitTime()
+     * @see Paper#setEvaluation()
+     * @see Paper#Paper(Integer, Integer, Integer, String, String, String, String, LocalDate, String)
      */
     public void submitPaper(User user){
         String file = selectPaper();
@@ -120,7 +161,7 @@ public class PaperDatabase {
         conferenceList.readFile();
         int conId = conferenceList.selectConference();
         LocalDate deadLine = conferenceList.getConferenceArrayList().get(conId-1).getSubmitDateline();
-
+        // check the deadline and format
         if (!Paper.setSubmitTime().isBefore(deadLine)
                 && !getFileType(file).equals(conferenceList.getConferenceArrayList().get(conId-1).getAcceptFormat())){
             Display.uploadFailed("Later than deadline & Wrong format");
@@ -133,17 +174,17 @@ public class PaperDatabase {
         }
         else {
             String newEvaluation = "null";
-            Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserId()), Paper.setConferenceId(conId),
+            Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserid()), Paper.setConferenceId(conId),
                     Paper.setTopic(), Paper.setName(getFileName(file)), Paper.setFormat(getFileType(file)), Paper.setState("submitted"), Paper.setSubmitTime(), newEvaluation);
             paperArrayList.add(submitPaper);
             System.out.println();
             System.out.println("paper upload successfully!");
         }
-
-
     }
+
     /**
-     * write file
+     * This method write paper arraylist into "paperDatabase.txt"
+     * split by ","
      */
     public void writeFile() {
         String filename = ("paperDatabase.txt");
@@ -155,12 +196,10 @@ public class PaperDatabase {
                         + "," + paper.getName() + "," + paper.getFormat()
                         + "," + paper.getState() + "," + paper.getSubmitTime()
                         + "," + paper.getEvaluation());
-
             }
             outputFile.close();
         } catch (IOException e) {
             System.out.println("Unexpected I/O error occurred");// print this when something wrong
         }
     }
-
 }

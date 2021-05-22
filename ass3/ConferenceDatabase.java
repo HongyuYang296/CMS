@@ -1,6 +1,7 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
@@ -25,7 +26,7 @@ public class ConferenceDatabase {
     }
 
     /**
-     * This class use for loop get conference name arraylist
+     * This method use for loop get conference name arraylist
      * @return nameList conference name arraylist
      */
     public ArrayList getNameList(){
@@ -37,7 +38,7 @@ public class ConferenceDatabase {
     }
 
     /**
-     * This class use for loop get conference ID arraylist
+     * This method use for loop get conference ID arraylist
      * @return idList conference ID arraylist
      */
     public ArrayList getIdList(){
@@ -142,6 +143,7 @@ public class ConferenceDatabase {
      * @see Conference#setConferenceTopics()
      * @see Conference#setAcceptFormat()
      * @see Conference#setSubmitDeadline()
+     * @see Conference#Conference(Integer, String, String, String, String, LocalDate) 
      */
     public void createConference(){
         Conference newConference = new Conference(Conference.setConferenceId(getIdList()),

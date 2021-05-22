@@ -19,7 +19,9 @@ public class UserDatabase {
     public ArrayList<User> getUserList() {
         return userList;
     }
-
+    /**
+     * This method read "userDatabase.txt" line by line and save information into userList
+     */
     public void readFile() {
         Scanner scanner = null;
         String filename = ("userDatabase.txt");
@@ -43,16 +45,17 @@ public class UserDatabase {
                 scanner.close();
         }
     }
-
+    /**
+     * This method write user arraylist into "userDatabase.txt"
+     * split by ","
+     */
     public void writeFile() {
         String filename = ("userDatabase.txt");
-
         try {
             PrintWriter outputFile = new PrintWriter(filename);
             for (User user : userList) {
                 outputFile.println(user.getUserId() + "," + user.getUserName()
                         + "," + user.getUserEmail() + "," + user.getUserPassword() + "," + user.getUserType());
-
             }
             outputFile.close();
         } catch (IOException e) {
@@ -84,12 +87,27 @@ public class UserDatabase {
         return emailList;
     }
 
+    /**
+     * This method create new user by using method from User class
+     *
+     * @see User#User(int, String, String, String, String)
+     * @see User#setUserid(ArrayList)
+     * @see User#setUserName(ArrayList)
+     * @see User#setUserEmail(ArrayList)
+     * @see User#setUserPassword()
+     * @see User#setUserType()
+     */
     public void registration() {
         User newUser = new User(User.setUserid(getIdList()), User.setUserName(getNameList()),
                 User.setUserEmail(getEmailList()), User.setUserPassword(), User.setUserType());
         userList.add(newUser);
     }
 
+    /**
+     * This method ask user input email and password and validate
+     *
+     * @return targetUser
+     */
     public User logIn() {
         Scanner input = new Scanner(java.lang.System.in);
         java.lang.System.out.println("input email: ");
@@ -112,7 +130,6 @@ public class UserDatabase {
         }
         return null;
     }
-
 }
 
 
