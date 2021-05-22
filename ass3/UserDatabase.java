@@ -50,7 +50,7 @@ public class UserDatabase {
         try {
             PrintWriter outputFile = new PrintWriter(filename);
             for (User user : userList) {
-                outputFile.println(user.getUserid() + "," + user.getUserName()
+                outputFile.println(user.getUserId() + "," + user.getUserName()
                         + "," + user.getUserEmail() + "," + user.getUserPassword() + "," + user.getUserType());
 
             }
@@ -63,7 +63,7 @@ public class UserDatabase {
     public ArrayList getIdList() {
         ArrayList<Integer> idList = new ArrayList<>();
         for (User user : userList) {
-            idList.add(user.getUserid());
+            idList.add(user.getUserId());
         }
         return idList;
     }

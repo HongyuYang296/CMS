@@ -143,7 +143,7 @@ public class ConferenceDatabase {
      * @see Conference#setAcceptFormat()
      * @see Conference#setSubmitDeadline()
      */
-    public void creatConference(){
+    public void createConference(){
         Conference newConference = new Conference(Conference.setConferenceId(getIdList()),
                 Conference.setConferenceName(getNameList()), Conference.setConferenceTitle(),
                 Conference.setConferenceTopics(), Conference.setAcceptFormat(),Conference.setSubmitDeadline());
