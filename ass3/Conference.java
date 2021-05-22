@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
- *
+ *This class manage
  *
  * @author team56
  * @version 2.0 (21 May 2021)

@@ -24,36 +24,18 @@ public class User{
         this.userType = userType;
     }
 
-    /**
-     * get user id
-     * @return user id
-     */
     public int getUserid() {
         return userid;
     }
 
-    /**
-     * set user id
-     * @param arrayList  set id number in order for each user in arraylist
-     * @return   id number in arraylist
-     */
     public static int setUserid(ArrayList arrayList) {
         return arrayList.size() + 1;
     }
 
-    /**
-     * get user name
-     * @return user name
-     */
     public String getUserName() {
         return userName;
     }
 
-    /**
-     * set user name and validations for name input
-     * @param arrayList  name are stored in arraylist
-     * @return      new user name
-     */
     public static String setUserName(ArrayList arrayList) {
         boolean correctName = false;
         String newUserName = "";
@@ -90,19 +72,10 @@ public class User{
         return newUserName;
     }
 
-    /**
-     * get user email
-     * @return user email
-     */
     public String getUserEmail() {
         return userEmail;
     }
 
-    /**
-     * set user email and validations for email input
-     * @param arrayList   emial are stored in arraylist
-     * @return          new user email
-     */
     public static String setUserEmail(ArrayList arrayList) {
         boolean correctEmail = false;
         String newUserEmail = "";
@@ -172,10 +145,6 @@ public class User{
         return newUserPassword;
     }
 
-    /**
-     *  get user type
-     * @return
-     */
     public String getUserType() {
         return userType;
     }
@@ -208,9 +177,7 @@ public class User{
 
             }
         }
-        System.out.println("Type successfully selected");
-        System.out.println("--------------------------");
-        System.out.println(" Sign up successfully ");
+        System.out.println("type successfully selected");
         return newUserType;
     }
 
