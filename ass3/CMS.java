@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 /**
  * This is the main class -> Conference Management System(CMS) class
@@ -27,6 +28,11 @@ public class CMS {
 
     /**
      * read the all .txt file by calling function from other class
+     *
+     * @see UserDatabase#readFile()
+     * @see ReviewerDatabase#readFile()
+     * @see PaperDatabase#readFile()
+     * @see ConferenceDatabase#readFile()
      */
     private void readTxtFiles(){
         users.readFile();
@@ -37,6 +43,11 @@ public class CMS {
 
     /**
      * re-write the all .txt file by calling function from other class
+     *
+     * @see UserDatabase#writeFile()
+     * @see ReviewerDatabase#writeFile()
+     * @see PaperDatabase#writeFile()
+     * @see ConferenceDatabase#writeFile()
      */
     private void writeTxtFiles(){
         users.writeFile();
@@ -49,6 +60,8 @@ public class CMS {
      * show the main page of this system
      * use while loop to re-display menu / use switch to get into different options
      *
+     * @see UserDatabase#registration()
+     * @see Display#invalidInput()
      */
     private void mainPage(){
         while (!exitCMS) {
@@ -71,6 +84,7 @@ public class CMS {
     /**
      * This method log into system and automatically go to different user page based on different role of users
      *
+     * @see UserDatabase#logIn(String, String)
      */
     private void logIN(){
         Scanner input = new Scanner(java.lang.System.in);
@@ -96,6 +110,7 @@ public class CMS {
     /**
      * This method show admin page
      *
+     * @see Display#invalidInput()
       */
     private void adminPage(){
         boolean exit = false;
@@ -119,6 +134,8 @@ public class CMS {
      * This method using while to re-display author page
      * using switch to get into different sub method
      *
+     * @see PaperDatabase#submitPaper(User)
+     * @see Display#invalidInput()
      * @param user insert user information from log in
      */
     private void authorPage(User user) {
@@ -142,6 +159,8 @@ public class CMS {
      * This method using while to re-display reviewer page
      * using switch to get into different sub method
      *
+     * @see ReviewerDatabase#upload()
+     * @see Display#invalidInput()
      * @param user insert user information from log in
      */
     private void reviewerPage(User user) {
@@ -167,6 +186,8 @@ public class CMS {
     /**
      * This method using while to re-display chair page
      * using switch to get into different sub method
+     *
+     * @see Display#invalidInput()
      */
     private void chairPage(){
         boolean exit = false;
@@ -189,6 +210,8 @@ public class CMS {
 
     /**
      * This method create new conference by calling method from class ConferenceDatabase
+     *
+     * @see ConferenceDatabase#creatConference()
      */
     private void createConference(){
         conferenceList.creatConference();
@@ -197,6 +220,8 @@ public class CMS {
     /**
      * This method can get index of reviewer from reviewer arraylist when input reviewer ID
      *
+     * @see ReviewerDatabase#getReviewerArrayList()
+     * @see Reviewer#getId()
      * @param inputId input reviewer ID
      * @return index index of reviewer arraylist
      */
@@ -213,6 +238,7 @@ public class CMS {
     /**
      * This method select topics for reviewer
      *
+     * @see ReviewerDatabase#setTopics(int)
      * @param user user who log in
      */
     private void selectTopics(User user){
@@ -222,6 +248,9 @@ public class CMS {
     /**
      * This method ask reviewer select paper to review
      *
+     * @see PaperDatabase#getPaperList()
+     * @see ReviewerDatabase#selectPaper(int, int)
+     * @see Display#invalidInput()
      * @param user user who log in
      * @exception NumberFormatException e when input not int, throw out exception
      */
@@ -249,6 +278,8 @@ public class CMS {
     /**
      * This method select one paper for assign
      *
+     * @see PaperDatabase#getPaperList()
+     * @see Display#invalidInput()
      * @exception NumberFormatException e when input not int, throw out exception
      */
     private void assignPaper(){
@@ -259,6 +290,7 @@ public class CMS {
             try {
                 Scanner input = new Scanner(java.lang.System.in);
                 int selectPaper = Integer.parseInt(input.nextLine());
+                //Check if the input int in the paper arraylist
                 if (selectPaper < 0 || selectPaper > paperList.getPaperList().size()) {
                     System.out.println("selected paper not exit!");
                 } else {
@@ -275,6 +307,9 @@ public class CMS {
     /**
      * This method select reviewer for assign
      *
+     * @see ReviewerDatabase#getIdList()
+     * @see ReviewerDatabase#selectPaper(int, int)
+     * @see Display#invalidInput()
      * @param selectPaper inset paperID to identity which paper being assign to this reviewer
      *  @exception NumberFormatException e when input not int, throw out exception
      */
@@ -302,6 +337,7 @@ public class CMS {
     /**
      * This method can get paper index for paper arraylist when input paperID
      *
+     * @see PaperDatabase#getPaperList()
      * @param input input paperID
      * @return index index of paper arraylist
      */
@@ -319,6 +355,11 @@ public class CMS {
      * This method get and show all paper reviewer already have and ask them select one to give evaluation
      * when evaluation successfully set, remove this paper from arraylist of paper of this reviewer
      *
+     * @see ReviewerDatabase#getReviewerArrayList()
+     * @see Reviewer#getPaperList()
+     * @see PaperDatabase#getPaperList()
+     * @see Paper#setEvaluation()
+     * @see Display#show(ArrayList, String)
      * @param user user who log in
      * @exception NumberFormatException e when input not int, throw out exception
      */
@@ -326,6 +367,7 @@ public class CMS {
         boolean exit = false;
         while (!exit){
             System.out.println("Paper under reviewing: ");
+            // show all the paper of reviewer
             Display.show(reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).getPaperList(),
                     "paper already have:");
             System.out.println();
@@ -333,11 +375,13 @@ public class CMS {
             try {
                 Scanner input = new Scanner(java.lang.System.in);
                 int selectPaper = Integer.parseInt(input.nextLine());
+                // check if the select paper exit in reviewer's paper list
                 if (!reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).getPaperList().contains(selectPaper)) {
                     System.out.println("Paper not exit!");
                     System.out.println();
                 } else {
                     paperList.getPaperList().get(getPaperIndex(selectPaper)).setEvaluation();
+                    // when give evaluation remove it from arraylist
                     reviewerDatabase.getReviewerArrayList().get(getIndex(user.getUserid())).removePaper(selectPaper);
                     exit = true;
                 }
@@ -351,6 +395,10 @@ public class CMS {
     /**
      * This method allowed chair to give final decision of accept or reject of paper
      * use method "getSelectPaper()" to select one paper then give decision
+     * then use method "setState1()" to set state
+     *
+     * @see PaperDatabase#getPaperList()
+     * @see Paper#setState(String)
      */
     private void finalDecision(){
         int selectPaper = getSelectPaper();
@@ -380,6 +428,9 @@ public class CMS {
 
     /**
      * This method ask chair to select one conference to make the final decision of paper in this conference
+     *
+     * @see ConferenceDatabase#getIdList()
+     * @see Display#invalidInput()
      * @return selectConferenceID
      */
     private int selectConference(){
@@ -444,11 +495,15 @@ public class CMS {
     /**
      * This method shows all the paper form select conference
      *
+     * @see PaperDatabase#getPaperList()
+     * @see Paper#getConferenceId()
+     *
      * @param conferenceId input select conference ID to identity conference
      */
     private void showSelectConferencePaper(int conferenceId){
         System.out.println("paper list of conference" + conferenceId + "(conference ID): ");
         for (int i=0; i < paperList.getPaperList().size(); i++){
+            // if input conference ID == conference ID from paper, print paper
             if (conferenceId == paperList.getPaperList().get(i).getConferenceId()){
                 System.out.println("paperID: " + paperList.getIdList().get(i) + "  paper name: " + paperList.getNameList().get(i));
             }
@@ -479,6 +534,9 @@ public class CMS {
 
     /**
      * This method shows all elements of conference arraylist
+     *
+     * @see ConferenceDatabase#getConferenceArrayList()
+     * @see Display#show(ArrayList, String)
      */
     private void showConferenceList(){
         Display.show(conferenceList.getConferenceArrayList(), "Conference");
@@ -487,6 +545,7 @@ public class CMS {
 
     /**
      * This is the main method to run this program.
+     *
      * @param args args
      */
     public static void main(String[] args) {
