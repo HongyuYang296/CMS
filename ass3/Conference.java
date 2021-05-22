@@ -2,12 +2,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 /**
- *
- *
+ * Write a description of class Conference here.
  * @author team56
  * @version 2.0 (21 May 2021)
  */
 public class Conference {
+    // The fields
     private Integer conferenceId;
     private String conferenceName;
     private String conferenceTitle;
@@ -15,6 +15,9 @@ public class Conference {
     private String acceptFormat;
     private LocalDate submitDeadline;
 
+    /**
+     * constructor for class Conference
+     */
     public Conference(Integer conferenceId, String conferenceName, String conferenceTitle, String conferenceTopics, String acceptFormat, LocalDate submitDateline) {
         this.conferenceId = conferenceId;
         this.conferenceName = conferenceName;
@@ -24,6 +27,10 @@ public class Conference {
         this.submitDeadline = submitDateline;
     }
 
+    /**
+     *
+     *
+     */
     public Integer getConferenceId() {
         return conferenceId;
     }
@@ -62,6 +69,11 @@ public class Conference {
         return conferenceTitle;
     }
 
+
+    /**
+     * This step sets the Tilte of conference, and when the user enters the name,
+     * the Title successfully set will be printed.
+     */
     public static String setConferenceTitle() {
         System.out.print("Enter conference Title: ");
         Scanner scanner = new Scanner(System.in);
@@ -82,6 +94,10 @@ public class Conference {
         return acceptFormat;
     }
 
+    /**
+     * This step sets the accepted Format. When not exit, type 1 to from docx format
+     * and type 2 to form PDF format.
+     */
     public static String setAcceptFormat() {
         Display.showFileFormat();
         String newFormat = "";
@@ -108,6 +124,9 @@ public class Conference {
         return submitDeadline;
     }
 
+    /**
+     * This part sets the deadline for the submission.
+     */
     public static LocalDate setSubmitDeadline() {
         boolean correctDeadline = false;
         LocalDate newDeadline = LocalDate.now();
@@ -117,7 +136,7 @@ public class Conference {
             String inputDate = scanner.nextLine().trim(); // remove blank in the begin and end
             if (!TimeConvert.isDateVail(inputDate)) {
                 System.out.println("please input correct format: yyyy-mm-dd");
-                System.out.println();
+                System.out.println(); // If the user enters a format other than yyyy-mm-dd, the user will be asked to retype.
             } else {
                 System.out.println("deadline successfully set");
                 newDeadline = TimeConvert.toDate(inputDate);
@@ -127,6 +146,9 @@ public class Conference {
         return newDeadline;
     }
 
+    /**
+     * Change to the String.
+     */
     @Override
     public String toString() {
         return
@@ -138,5 +160,3 @@ public class Conference {
                 ", submitDeadline=" + submitDeadline;
     }
 }
-
-
