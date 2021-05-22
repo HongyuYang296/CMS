@@ -90,7 +90,12 @@ public class UserDatabase {
         userList.add(newUser);
     }
 
-    public User logIn(String email, String password) {
+    public User logIn() {
+        Scanner input = new Scanner(java.lang.System.in);
+        java.lang.System.out.println("input email: ");
+        String email = input.nextLine();
+        java.lang.System.out.println("input pass: ");
+        String password = input.nextLine();
         try {
             User targetUser = userList.stream()
                     .filter(user -> user.getUserEmail().equals(email))
@@ -99,17 +104,17 @@ public class UserDatabase {
 
             if (!targetUser.getUserPassword().equals(password)) {
                 throw new Exception("password wrong!");
-
             }
             System.out.println("log in successful!");
             return targetUser;
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
+
 }
+
 
 
 
