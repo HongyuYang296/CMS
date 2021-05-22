@@ -100,6 +100,7 @@ public class PaperDatabase {
         return fs[Integer.parseInt(inputValue) -1].getName();
     }
 
+
     public static String getFileType(String file){
         String[] strArray = file.split("\\.");
         int suffixIndex = strArray.length -1;
@@ -110,6 +111,9 @@ public class PaperDatabase {
         return file.substring(0,file.lastIndexOf("."));
     }
 
+    /**
+     * submit paper, and determine upload file time and format
+     */
     public void submitPaper(User user){
         String file = selectPaper();
         ConferenceDatabase conferenceList = new ConferenceDatabase();
@@ -138,6 +142,9 @@ public class PaperDatabase {
 
 
     }
+    /**
+     * write file
+     */
     public void writeFile() {
         String filename = ("paperDatabase.txt");
         try {
