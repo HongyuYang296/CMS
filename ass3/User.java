@@ -24,14 +24,16 @@ public class User{
         this.userType = userType;
     }
 
-    /**
-     *
-     * @return
-     */
     public int getUserid() {
         return userid;
     }
 
+    /**
+     * set user id
+     *
+     * @param arrayList set id number sequence +1 for each user in arraylist
+     * @return   id number in arraylist
+     */
     public static int setUserid(ArrayList arrayList) {
         return arrayList.size() + 1;
     }
@@ -40,6 +42,11 @@ public class User{
         return userName;
     }
 
+    /**
+     * set user id
+     * @param arrayList  set id number in order for each user in arraylist
+     * @return   id number in arraylist
+     */
     public static String setUserName(ArrayList arrayList) {
         boolean correctName = false;
         String newUserName = "";
@@ -80,12 +87,16 @@ public class User{
         return userEmail;
     }
 
+    /**
+     * set user email and validations for email input
+     * @param arrayList email are stored in arraylist
+     * @return newUserEmail new user email
+     */
     public static String setUserEmail(ArrayList arrayList) {
         boolean correctEmail = false;
         String newUserEmail = "";
         while (!correctEmail)
         {
-
             System.out.print("Enter user email: ");
             Scanner scanner = new Scanner(System.in);
             String inputEmail = scanner.nextLine().trim();
@@ -153,6 +164,10 @@ public class User{
         return userType;
     }
 
+    /**
+     * This method ask user to set the user type
+     * @return newUserType
+     */
     public static String setUserType() {
         Display.showUserType();
         String newUserType = "";
@@ -178,12 +193,11 @@ public class User{
                     exit = true;
                 }
                 default -> Display.invalidInput();
-
             }
         }
-        System.out.println("type successfully selected");
-        System.out.println("---------------------------");
-        System.out.println("  Sign up successfully  ");
+        System.out.println("Type successfully selected");
+        System.out.println("==========================");
+        System.out.println("Sign up successfully! ");
         return newUserType;
     }
 

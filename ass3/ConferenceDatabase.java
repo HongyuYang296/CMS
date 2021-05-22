@@ -3,7 +3,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * This class manage conferenceDatabase, read and write file to "conferenceDatabase.txt"
+ *
+ *
+ * @author team56
+ * @version 2.0 (21 May 2021)
+ */
 public class ConferenceDatabase {
     private ArrayList<Conference> conferenceArrayList;
 
