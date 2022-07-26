@@ -174,7 +174,7 @@ public class PaperDatabase {
         }
         else {
             String newEvaluation = "null";
-            Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserid()), Paper.setConferenceId(conId),
+            Paper submitPaper = new Paper(Paper.setPaperId(getIdList()), Paper.setAuthorId(user.getUserId()), Paper.setConferenceId(conId),
                     Paper.setTopic(), Paper.setName(getFileName(file)), Paper.setFormat(getFileType(file)), Paper.setState("submitted"), Paper.setSubmitTime(), newEvaluation);
             paperArrayList.add(submitPaper);
             System.out.println();

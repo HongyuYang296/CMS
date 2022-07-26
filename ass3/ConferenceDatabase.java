@@ -49,7 +49,6 @@ public class ConferenceDatabase {
         return idList;
     }
 
-
     /**
      * This method read "conferenceDatabase.txt" line by line and save information into conferenceArrayList
      */

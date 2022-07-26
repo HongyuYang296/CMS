@@ -82,7 +82,7 @@ public class UserDatabase {
     public ArrayList getEmailList() {
         ArrayList<String> emailList = new ArrayList<>();
         for (User user : userList) {
-            emailList.add(user.getUserName());
+            emailList.add(user.getUserEmail());
         }
         return emailList;
     }

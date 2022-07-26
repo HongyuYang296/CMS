@@ -81,9 +81,9 @@ public class Conference {
     public static String setConferenceTitle() {
         System.out.print("Enter conference Title: ");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("       Title successfully set");
-        return scanner.nextLine().trim(); // remove blank in the begin and end
-
+        String newTitle = scanner.nextLine().trim(); // remove blank in the begin and end
+        System.out.println("    Title successfully set! ");
+        return newTitle;
     }
 
     public String getConferenceTopics() {
@@ -91,7 +91,9 @@ public class Conference {
     }
 
     public static String setConferenceTopics(){
-        return Paper.setTopics();
+        String newTopics = Paper.setTopics();
+        System.out.println("you have choose " + newTopics);
+        return newTopics;
     }
 
     public String getAcceptFormat() {

@@ -158,7 +158,6 @@ public class Paper
                     exit = true;
                 }
                 default -> Display.invalidInput();
-
             }
         }
         return newTopics;
@@ -216,8 +215,10 @@ public class Paper
                     newEVA = "N";
                     exit = true;
                 }
+                default -> Display.invalidInput();
             }
         }
+        System.out.println("evaluation set successful!");
         evaluation = newEVA;
     }
 
